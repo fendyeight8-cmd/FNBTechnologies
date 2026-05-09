@@ -121,11 +121,27 @@ class GalleryItem(db.Model):
         }
 
 # =========================
-# CREATE DATABASE
+# CREATE DATABASE & SEED
 # =========================
+
+DEFAULT_GALLERY = [
+    {'title': 'Royal Wedding', 'category': 'Bridal Artistry', 'src': '/images/bridal_makeup.png'},
+    {'title': 'Gala Dinner', 'category': 'Luxury Catering', 'src': '/images/catering.png'},
+    {'title': 'Corporate Summit', 'category': 'Corporate Event', 'src': '/images/corporate_event.png'},
+    {'title': 'Garden Engagement', 'category': 'Intimate Gatherings', 'src': '/images/engagement.png'},
+    {'title': 'Grand Reception', 'category': 'Event Design', 'src': '/images/gallery1.png'},
+    {'title': 'Culinary Excellence', 'category': 'Fine Dining', 'src': '/images/gallery2.png'},
+    {'title': 'Artisan Canapés', 'category': 'Luxury Catering', 'src': '/images/hero1.png'},
+    {'title': 'Elegant Setup', 'category': 'Event Design', 'src': '/images/hero2.png'},
+]
 
 with app.app_context():
     db.create_all()
+    if GalleryItem.query.count() == 0:
+        for item in DEFAULT_GALLERY:
+            db.session.add(GalleryItem(title=item['title'], category=item['category'], src=item['src']))
+        db.session.commit()
+        print("Gallery seeded with default items")
 
 # =========================
 # AUTH DECORATOR
