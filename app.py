@@ -167,6 +167,10 @@ def serve_gallery():
 def serve_admin():
     return send_from_directory(STATIC_FOLDER, 'admin.html')
 
+@app.route('/uploads/<path:filename>')
+def serve_uploads(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 # =========================
 # HEALTH CHECK
 # =========================
