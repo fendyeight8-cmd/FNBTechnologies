@@ -1802,5 +1802,82 @@ footer {
   .cb-addon {
     padding: 60px 24px;
   }
+  .cb-types-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px 60px;
+  }
+}
+
+/* Bento Types Showcase */
+.cb-types-header {
+  text-align: center;
+  padding: 100px 24px 50px;
+}
+.cb-types-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 60px 80px;
+}
+.cb-type-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--dark2);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cb-type-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+.cb-type-img-wrap {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+.cb-type-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cb-type-card:hover .cb-type-img {
+  transform: scale(1.08);
+}
+.cb-type-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 7, 5, 0.1) 0%,
+    rgba(8, 7, 5, 0.7) 100%
+  );
+  pointer-events: none;
+}
+.cb-type-name {
+  position: absolute;
+  bottom: 20px;
+  left: 28px;
+  font-family: var(--font-cormorant), serif;
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--white);
+  z-index: 2;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+.cb-type-desc {
+  padding: 20px 28px 28px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+@media (max-width: 992px) {
+  .cb-types-grid {
+    padding: 0 24px 60px;
+  }
 }
 

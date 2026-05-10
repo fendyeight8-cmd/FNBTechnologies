@@ -36,6 +36,28 @@ const features = [
   { icon: "🏆", title: "Quality Assured", desc: "Prepared with the finest locally-sourced ingredients, strict hygiene standards, and authentic Malaysian recipes." },
 ];
 
+const bentoTypes = [
+  {
+    name: "Malay Bento",
+    img: "/images/bento_malay.png",
+    desc: "Enjoy the taste of Malaysia with our diverse selection of authentic Malay dishes such as nasi goreng kampung, ayam goreng berempah and so on.",
+  },
+  {
+    name: "Western",
+    img: "/images/bento_western.png",
+    desc: "Savour classic Western favourites — grilled chicken, pasta, fresh salads and more, perfect for a sophisticated corporate lunch.",
+  },
+  {
+    name: "Chinese Bento",
+    img: "/images/bento_chinese.png",
+    desc: "Indulge in popular Chinese favourites like assam tiger prawn, salted egg fish fillet, and more in our flavourful Chinese Bento.",
+  },
+  {
+    name: "Japanese Bento",
+    img: "/images/bento_japanese.png",
+    desc: "Experience the essence of Japan with our Japanese Cuisine Bento: salmon, edamame, tamago, and more in a single, delectable meal.",
+  },
+];
 export default function CorporateBento({ onOpenBooking }: { onOpenBooking: () => void }) {
   useEffect(() => {
     const reveals = document.querySelectorAll(".cb-reveal");
@@ -77,6 +99,24 @@ export default function CorporateBento({ onOpenBooking }: { onOpenBooking: () =>
             <div className="cb-feature-icon">{f.icon}</div>
             <h4 className="cb-feature-title">{f.title}</h4>
             <p className="cb-feature-desc">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Bento Types Showcase */}
+      <div className="cb-types-header cb-reveal">
+        <div className="cb-eyebrow">Our Cuisine</div>
+        <h3 className="cb-section-title">Explore Our <em>Bento Range</em></h3>
+      </div>
+      <div className="cb-types-grid">
+        {bentoTypes.map((bt, i) => (
+          <div key={i} className={`cb-type-card cb-reveal`} style={{ transitionDelay: `${i * 0.12}s` }}>
+            <div className="cb-type-img-wrap">
+              <img src={bt.img} alt={bt.name} className="cb-type-img" loading="lazy" />
+              <div className="cb-type-overlay" />
+              <h4 className="cb-type-name">{bt.name}</h4>
+            </div>
+            <p className="cb-type-desc">{bt.desc}</p>
           </div>
         ))}
       </div>
