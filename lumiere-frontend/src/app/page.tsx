@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import MarketingMarquee from "@/components/MarketingMarquee";
 import BentoGrid from "@/components/BentoGrid";
 import DualPanel from "@/components/DualPanel";
+import CorporateBento from "@/components/CorporateBento";
 import Contact from "@/components/Contact";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
@@ -32,6 +33,7 @@ export default function Home() {
       <MarketingMarquee />
       <BentoGrid />
       <DualPanel />
+      <CorporateBento onOpenBooking={() => setIsBookingOpen(true)} />
       <Contact />
       <Testimonials />
       <Footer />
