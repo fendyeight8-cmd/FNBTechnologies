@@ -42,29 +42,29 @@ export default function AboutPage() {
           Our <em>Story</em>
         </h1>
         <p className="about-hero-subtitle">
-          Pioneering luxury catering and cinematic event design across Malaysia. We turn every occasion into a masterpiece of taste and elegance.
+          From humble beginnings in Sabah to becoming the region's most sought-after catering & event specialists — this is the Nums-Nums journey.
         </p>
       </div>
 
       <div className="about-content">
         <div className="about-text reveal">
-          <div className="section-eyebrow">The Foundation</div>
+          <div className="section-eyebrow">The Beginning</div>
           <h2 className="section-title" style={{ fontSize: '3rem', marginBottom: '32px' }}>
-            A Legacy of <em>Excellence</em>
+            Born from <em>Passion</em>
           </h2>
           <p>
-            Founded on the principles of culinary artistry and unparalleled service, <strong>Food & Beverage Technologies</strong> has redefined the landscape of luxury events. What began as a passionate endeavor to elevate local dining experiences has blossomed into Malaysia's premier event design and catering powerhouse.
+            <strong>Nums-Nums Catering & Event</strong> was founded with one simple belief: food is love, made visible. What started as a small family kitchen catering for intimate gatherings in Kota Kinabalu has grown into Sabah's premier event and catering powerhouse — a proud subsidiary of <em>Food & Beverage Technologies</em>.
           </p>
           <p>
-            Our dedicated team of master chefs, bridal artisans, and event architects work in perfect harmony to curate bespoke journeys. Whether it is a grand royal wedding, an intimate garden engagement, or a high-profile corporate summit, our signature touch ensures an unforgettable narrative.
+            Our name "Nums-Nums" captures the childlike joy of that first irresistible bite — a moment of pure delight that we strive to recreate at every event. From royal weddings to corporate galas, our team of master chefs, event architects, and bridal artisans orchestrate unforgettable experiences with warmth, precision, and a distinctly Malaysian flair.
           </p>
           <p>
-            We believe that true luxury lies in the details—from the meticulous sourcing of the finest ingredients to the flawless execution of atmospheric design. Welcome to a world where excellence is not just expected; it is meticulously crafted.
+            We believe luxury doesn't have to be distant or cold. At Nums-Nums, luxury is welcoming. It's the aroma of freshly prepared nasi lemak next to artisan canapés, a smile from our service team, and the confident feeling that every last detail has been perfected — just for you.
           </p>
         </div>
         <div className="about-image-wrapper reveal reveal-delay-1">
           <div className="about-image-inner">
-            <img src="/images/hero3.png" alt="Culinary Artistry" loading="lazy" />
+            <img src="/images/hero3.png" alt="Nums-Nums Culinary Artistry" loading="lazy" />
           </div>
         </div>
       </div>
@@ -77,11 +77,11 @@ export default function AboutPage() {
           </div>
           <div className="fact-item reveal reveal-delay-1">
             <div className="fact-number">2,500+</div>
-            <div className="fact-label">Events Curated</div>
+            <div className="fact-label">Events Catered</div>
           </div>
           <div className="fact-item reveal reveal-delay-2">
-            <div className="fact-number">30+</div>
-            <div className="fact-label">Industry Awards</div>
+            <div className="fact-number">50K+</div>
+            <div className="fact-label">Happy Guests Served</div>
           </div>
           <div className="fact-item reveal reveal-delay-3">
             <div className="fact-number">100%</div>

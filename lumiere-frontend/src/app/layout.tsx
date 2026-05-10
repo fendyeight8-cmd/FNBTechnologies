@@ -18,8 +18,8 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Food & Beverage Technologies",
-  description: "High-end Malaysian luxury catering and bridal artistry experience.",
+  title: "Nums-Nums Catering & Event | Premium Catering in Sabah",
+  description: "Nums-Nums Catering & Event — Where every bite tells a story. Premium catering, luxury event design, and cinematic bridal artistry in Kota Kinabalu, Sabah. Owned by Food & Beverage Technologies.",
 };
 
 export default function RootLayout({

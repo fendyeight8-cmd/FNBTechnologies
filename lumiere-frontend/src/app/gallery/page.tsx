@@ -51,7 +51,7 @@ export default function GalleryPage() {
           Our <em>Gallery</em>
         </h1>
         <p className="gallery-hero-subtitle">
-          A curated collection of unforgettable moments, cinematic bridal experiences, and culinary excellence.
+          A curated collection of unforgettable moments — from stunning wedding spreads to elegant corporate galas, crafted by Nums-Nums.
         </p>
       </div>
 

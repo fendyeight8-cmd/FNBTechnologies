@@ -34,12 +34,12 @@ export default function Hero({ onOpenBooking }: { onOpenBooking: () => void }) {
       </div>
 
       <div className="hero-content">
-        <div className="hero-eyebrow">Luxury Catering & Artistry</div>
+        <div className="hero-eyebrow">Nums-Nums Catering & Event</div>
         <h1 className="hero-title">
-          The Art of <em>Excellence</em>
+          Where Every Bite Tells a <em>Story</em>
         </h1>
         <p className="hero-subtitle">
-          Crafting unforgettable culinary journeys and cinematic bridal experiences in the heart of Malaysia.
+          Premium catering, stunning event design, and cinematic bridal artistry — crafted with passion in the heart of Sabah, Malaysia.
         </p>
         <div className="hero-cta-group">
           <button onClick={onOpenBooking} className="btn-primary">Book Now</button>

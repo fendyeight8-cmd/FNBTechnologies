@@ -16,8 +16,8 @@ export default function Navbar({ onOpenBooking, onOpenAdmin }: { onOpenBooking: 
 
   return (
     <nav className={scrolled ? "scrolled" : ""}>
-      <Link href="/" className="logo" style={{ fontSize: '1.8rem', fontWeight: '800', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-        Food & Beverage Technologies<span style={{ color: 'var(--gold)' }}>.</span>
+      <Link href="/" className="logo" style={{ fontSize: '1.6rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+        Nums-Nums<span style={{ color: 'var(--gold)', fontSize: '0.55em', display: 'block', letterSpacing: '0.15em', fontWeight: '300', marginTop: '-2px' }}>Catering & Event</span>
       </Link>
 
       <ul className="nav-links">

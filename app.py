@@ -195,7 +195,7 @@ def serve_uploads(filename):
 def health_check():
     return jsonify({
         'status': 'online',
-        'service': 'Food & Beverage Technologies API'
+        'service': 'Nums-Nums Catering & Event API'
     })
 
 # =========================

@@ -4,16 +4,16 @@ import { useState, useEffect } from "react";
 
 const testimonials = [
   {
-    quote: "The catering was beyond anything we imagined. Our guests are still talking about it months later. Truly unforgettable.",
+    quote: "Nums-Nums transformed our wedding into a fairytale. The food was spectacular, the setup was breathtaking, and every single guest complimented the experience. We couldn't have asked for more.",
     author: "Siti Rahimah — Wedding Client, Penang"
   },
   {
-    quote: "My makeup artist was an absolute genius. She understood my vision perfectly and made me feel like a queen on my special day.",
+    quote: "My makeup artist from Nums-Nums was an absolute genius. She understood my vision perfectly and made me feel like a queen on my special day. Truly world-class artistry.",
     author: "Amirah Lim — Bridal Client, KL"
   },
   {
-    quote: "We hired Food & Beverage Technologies for both catering and beauty for our corporate gala. The seamless experience and exceptional quality blew everyone away.",
-    author: "Dato' Ahmad — Corporate Event, Penang"
+    quote: "We've used Nums-Nums for three consecutive corporate galas. The consistency, creativity, and professionalism are unmatched. They make us look good every single time.",
+    author: "Dato' Ahmad — Corporate Event, Kota Kinabalu"
   }
 ];
 
