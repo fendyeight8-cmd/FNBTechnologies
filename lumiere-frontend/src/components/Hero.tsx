@@ -45,14 +45,13 @@ export default function Hero({ onOpenBooking }: { onOpenBooking: () => void }) {
           <button onClick={onOpenBooking} className="btn-primary">Order Now</button>
           <Link href="/cateringmenu" className="btn-ghost">View Menu</Link>
         </div>
-      </div>
-
-      <div className="hero-service-strip">
-        {slides.map((slide, index) => (
-          <span key={slide.id} className={index === currentSlide ? "active" : ""}>
-            {slide.label}
-          </span>
-        ))}
+        <div className="hero-service-strip">
+          {slides.map((slide, index) => (
+            <span key={slide.id} className={index === currentSlide ? "active" : ""}>
+              {slide.label}
+            </span>
+          ))}
+        </div>
       </div>
     </header>
   );
