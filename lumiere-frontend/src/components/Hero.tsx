@@ -41,16 +41,18 @@ export default function Hero({ onOpenBooking }: { onOpenBooking: () => void }) {
         <p className="hero-subtitle">
           Premium buffet catering, corporate bento, kuih selections, and daily canteen meals prepared with Malaysian heritage taste.
         </p>
-        <div className="hero-cta-group">
-          <button onClick={onOpenBooking} className="btn-primary">Order Now</button>
-          <Link href="/cateringmenu" className="btn-ghost">View Menu</Link>
-        </div>
-        <div className="hero-service-strip">
-          {slides.map((slide, index) => (
-            <span key={slide.id} className={index === currentSlide ? "active" : ""}>
-              {slide.label}
-            </span>
-          ))}
+        <div className="hero-actions-row">
+          <div className="hero-cta-group">
+            <button onClick={onOpenBooking} className="btn-primary">Order Now</button>
+            <Link href="/cateringmenu" className="btn-ghost">View Menu</Link>
+          </div>
+          <div className="hero-service-strip">
+            {slides.map((slide, index) => (
+              <span key={slide.id} className={index === currentSlide ? "active" : ""}>
+                {slide.label}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </header>
