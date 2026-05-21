@@ -4,7 +4,9 @@ from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from functools import wraps
 from datetime import datetime
+from sqlalchemy import text
 import os
+import uuid
 
 STATIC_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static_frontend')
 
@@ -17,10 +19,15 @@ CORS(app)
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
+database_url = os.environ.get(
     'DATABASE_URL',
     'sqlite:///' + os.path.join(BASE_DIR, 'bookings.db')
 )
+
+if database_url.startswith('postgres://'):
+    database_url = database_url.replace('postgres://', 'postgresql://', 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -41,6 +48,22 @@ db = SQLAlchemy(app)
 ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "fbt2026")
 API_TOKEN = os.environ.get("API_TOKEN", "fbt_secure_token_2026")
+ALLOWED_IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
+
+
+def allowed_image_file(filename):
+    return (
+        '.' in filename and
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_IMAGE_EXTENSIONS
+    )
+
+
+def required_string(data, field):
+    value = data.get(field) if data else None
+    if value is None:
+        return None
+    value = str(value).strip()
+    return value or None
 
 # =========================
 # MODELS
@@ -62,6 +85,9 @@ class Booking(db.Model):
     location = db.Column(db.String(200))
 
     notes = db.Column(db.Text)
+    package = db.Column(db.String(120))
+    budget = db.Column(db.String(80))
+    status = db.Column(db.String(30), default='New', nullable=False)
 
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -77,6 +103,9 @@ class Booking(db.Model):
             'guests': self.guests,
             'location': self.location,
             'notes': self.notes,
+            'package': self.package,
+            'budget': self.budget,
+            'status': self.status,
             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S')
         }
 
@@ -137,9 +166,23 @@ DEFAULT_GALLERY = [
 
 with app.app_context():
     db.create_all()
+    if database_url.startswith('sqlite'):
+        existing_columns = {
+            row[1] for row in db.session.execute(text("PRAGMA table_info(booking)")).fetchall()
+        }
+        booking_migrations = {
+            'package': "ALTER TABLE booking ADD COLUMN package VARCHAR(120)",
+            'budget': "ALTER TABLE booking ADD COLUMN budget VARCHAR(80)",
+            'status': "ALTER TABLE booking ADD COLUMN status VARCHAR(30) DEFAULT 'New' NOT NULL",
+        }
+        for column, statement in booking_migrations.items():
+            if column not in existing_columns:
+                db.session.execute(text(statement))
+        db.session.commit()
     if GalleryItem.query.count() == 0:
         for item in DEFAULT_GALLERY:
-            db.session.add(GalleryItem(title=item['title'], category=item['category'], src=item['src']))
+            title = item['title'].encode('latin1', errors='ignore').decode('utf-8', errors='ignore')
+            db.session.add(GalleryItem(title=title, category=item['category'], src=item['src']))
         db.session.commit()
         print("Gallery seeded with default items")
 
@@ -179,6 +222,10 @@ def serve_about():
 def serve_gallery():
     return send_from_directory(STATIC_FOLDER, 'gallery.html')
 
+@app.route('/cateringmenu')
+def serve_catering_menu():
+    return send_from_directory(STATIC_FOLDER, 'cateringmenu.html')
+
 @app.route('/admin')
 def serve_admin():
     return send_from_directory(STATIC_FOLDER, 'admin.html')
@@ -195,7 +242,7 @@ def serve_uploads(filename):
 def health_check():
     return jsonify({
         'status': 'online',
-        'service': 'Nums-Nums Catering & Event API'
+        'service': 'Nam-Nams Catering & Event API'
     })
 
 # =========================
@@ -205,11 +252,11 @@ def health_check():
 @app.route('/api/login', methods=['POST'])
 def login():
 
-    data = request.json
+    data = request.get_json(silent=True) or {}
 
     if (
         data and
-        data.get('username', '').lower() == ADMIN_USERNAME and
+        data.get('username', '').lower() == ADMIN_USERNAME.lower() and
         data.get('password') == ADMIN_PASSWORD
     ):
 
@@ -230,20 +277,37 @@ def login():
 @app.route('/api/booking', methods=['POST'])
 def create_booking():
 
-    data = request.json
+    data = request.get_json(silent=True) or {}
 
     try:
+        service = required_string(data, 'service')
+        name = required_string(data, 'name')
+        date = required_string(data, 'date')
+
+        if not service or not name or not date:
+            return jsonify({
+                'status': 'error',
+                'message': 'service, name, and date are required'
+            }), 400
+
+        try:
+            guests = int(data.get('guests') or 0)
+        except (TypeError, ValueError):
+            guests = 0
 
         new_booking = Booking(
-            service=data.get('service'),
-            name=data.get('name'),
-            email=data.get('email'),
-            phone=data.get('phone', 'Not provided'),
-            date=data.get('date'),
-            time=data.get('time'),
-            guests=data.get('guests', 0),
-            location=data.get('location'),
-            notes=data.get('notes')
+            service=service,
+            name=name,
+            email=required_string(data, 'email'),
+            phone=required_string(data, 'phone') or 'Not provided',
+            date=date,
+            time=required_string(data, 'time'),
+            guests=guests,
+            location=required_string(data, 'location'),
+            notes=required_string(data, 'notes'),
+            package=required_string(data, 'package') or required_string(data, 'bentoType') or required_string(data, 'cuisineType'),
+            budget=required_string(data, 'budget'),
+            status='New'
         )
 
         db.session.add(new_booking)
@@ -278,6 +342,35 @@ def view_bookings():
 
     return jsonify([b.to_dict() for b in bookings])
 
+
+@app.route('/admin/bookings/<int:booking_id>/status', methods=['PATCH'])
+@admin_required
+def update_booking_status(booking_id):
+    data = request.get_json(silent=True) or {}
+    status = required_string(data, 'status')
+    allowed_statuses = {'New', 'Contacted', 'Quoted', 'Confirmed', 'Cancelled'}
+
+    if status not in allowed_statuses:
+        return jsonify({
+            'status': 'error',
+            'message': 'Invalid booking status'
+        }), 400
+
+    booking = db.session.get(Booking, booking_id)
+    if not booking:
+        return jsonify({
+            'status': 'error',
+            'message': 'Booking not found'
+        }), 404
+
+    booking.status = status
+    db.session.commit()
+
+    return jsonify({
+        'status': 'success',
+        'booking': booking.to_dict()
+    })
+
 # =========================
 # MARKETING MATERIALS
 # =========================
@@ -288,12 +381,19 @@ def handle_marketing():
 
     if request.method == 'POST':
 
-        data = request.json
+        data = request.get_json(silent=True) or {}
+        title = required_string(data, 'title')
+
+        if not title:
+            return jsonify({
+                'status': 'error',
+                'message': 'title is required'
+            }), 400
 
         new_material = MarketingMaterial(
-            title=data.get('title'),
-            description=data.get('description'),
-            image_url=data.get('image_url')
+            title=title,
+            description=required_string(data, 'description'),
+            image_url=required_string(data, 'image_url')
         )
 
         db.session.add(new_material)
@@ -317,17 +417,20 @@ def handle_marketing():
 @app.route('/api/booked-dates')
 def get_booked_dates():
 
-    bookings = Booking.query.all()
+    bookings = Booking.query.order_by(Booking.created_at.asc()).all()
 
     result = {}
 
     for b in bookings:
 
-        result[b.date] = {
+        if b.date not in result:
+            result[b.date] = []
+
+        result[b.date].append({
             'service': b.service,
             'time': b.time or 'Full Day',
-            'status': 'Confirmed'
-        }
+            'status': b.status or 'New'
+        })
 
     return jsonify(result)
 
@@ -368,9 +471,17 @@ def upload_gallery_image():
             'message': 'No selected file'
         }), 400
 
+    if not allowed_image_file(file.filename):
+        return jsonify({
+            'status': 'error',
+            'message': 'Unsupported image type'
+        }), 400
+
     try:
 
         filename = secure_filename(file.filename)
+        name, ext = os.path.splitext(filename)
+        filename = f"{name[:80]}-{uuid.uuid4().hex[:12]}{ext.lower()}"
 
         file_path = os.path.join(
             app.config['UPLOAD_FOLDER'],
@@ -379,8 +490,8 @@ def upload_gallery_image():
 
         file.save(file_path)
 
-        title = request.form.get('title', 'Untitled')
-        category = request.form.get('category', 'Uncategorized')
+        title = request.form.get('title', 'Untitled').strip() or 'Untitled'
+        category = request.form.get('category', 'Uncategorized').strip() or 'Uncategorized'
 
         src = f'/uploads/{filename}'
 
@@ -415,7 +526,7 @@ def upload_gallery_image():
 @admin_required
 def delete_gallery_image(item_id):
 
-    item = GalleryItem.query.get(item_id)
+    item = db.session.get(GalleryItem, item_id)
 
     if not item:
 
@@ -430,12 +541,13 @@ def delete_gallery_image(item_id):
 
             filename = item.src.split('/uploads/')[-1]
 
-            file_path = os.path.join(
+            file_path = os.path.abspath(os.path.join(
                 app.config['UPLOAD_FOLDER'],
                 filename
-            )
+            ))
 
-            if os.path.exists(file_path):
+            upload_root = os.path.abspath(app.config['UPLOAD_FOLDER'])
+            if file_path.startswith(upload_root + os.sep) and os.path.exists(file_path):
                 os.remove(file_path)
 
         db.session.delete(item)

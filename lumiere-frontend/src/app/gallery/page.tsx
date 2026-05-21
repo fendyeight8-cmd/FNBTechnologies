@@ -5,14 +5,22 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BookingModal from "@/components/BookingModal";
+import { apiUrl } from "@/lib/api";
+
+interface GalleryItem {
+  id: number;
+  title: string;
+  category: string;
+  src: string;
+}
 
 export default function GalleryPage() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
-  const [galleryItems, setGalleryItems] = useState<any[]>([]);
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const router = useRouter();
 
   useEffect(() => {
-    fetch("https://fnbtechnologies.onrender.com/api/gallery")
+    fetch(apiUrl("/api/gallery"))
       .then(res => res.json())
       .then(data => setGalleryItems(data))
       .catch(err => console.error("Failed to fetch gallery:", err));
@@ -51,7 +59,7 @@ export default function GalleryPage() {
           Our <em>Gallery</em>
         </h1>
         <p className="gallery-hero-subtitle">
-          A curated collection of unforgettable moments — from stunning wedding spreads to elegant corporate galas, crafted by Nums-Nums.
+          A curated collection of unforgettable moments — from stunning wedding spreads to elegant corporate galas, crafted by Nam-Nams.
         </p>
       </div>
 

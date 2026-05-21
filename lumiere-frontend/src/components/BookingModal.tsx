@@ -1,14 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
+import { apiUrl } from "@/lib/api";
 
 const services = [
-  { id: "bridal", name: "Bridal Makeup", icon: "💄", image: "/images/bridal_makeup.png" },
-  { id: "catering", name: "Catering", icon: "🍽️", image: "/images/catering.png" },
-  { id: "bento", name: "Corporate Bento", icon: "🍱", image: "/images/corporate_event.png" },
-  { id: "event", name: "Event Planning", icon: "🎪", image: "/images/hero2.png" },
-  { id: "engagement", name: "Engagement", icon: "💍", image: "/images/engagement.png" }
+  { id: "bridal", name: "Bridal Makeup", icon: "BM", image: "/images/bridal_makeup.png" },
+  { id: "catering", name: "Catering", icon: "CT", image: "/images/catering.png" },
+  { id: "bento", name: "Corporate Bento", icon: "CB", image: "/images/corporate_event.png" },
+  { id: "event", name: "Event Planning", icon: "EP", image: "/images/hero2.png" },
+  { id: "engagement", name: "Engagement", icon: "EN", image: "/images/engagement.png" },
 ];
+
+const missing = "-";
 
 export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [step, setStep] = useState(1);
@@ -21,66 +24,88 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
     guests: "0",
     location: "",
     notes: "",
-    // Corporate Bento specific
     bentoType: "",
     bentoPax: "",
     deliveryTime: "",
     companyName: "",
-    // Bridal specific
     bridalPackage: "",
     trialDate: "",
-    // Catering specific
     cuisineType: "",
     eventType: "",
-    // Engagement specific
     theme: "",
     venue: "",
-    // Event Planning specific
     eventCategory: "",
     eventSize: "",
-    budget: ""
+    budget: "",
+    package: "",
   });
 
   if (!isOpen) return null;
 
+  const updateForm = (fields: Partial<typeof formData>) => {
+    setFormData((current) => ({ ...current, ...fields }));
+  };
+
   const handleNext = () => {
-    if (step === 1 && !formData.service) { alert("Please select a service"); return; }
-    if (step === 2) {
-      if (!formData.name || !formData.phone || !formData.date) { alert("Please fill Name, Phone & Date"); return; }
+    if (step === 1 && !formData.service) {
+      alert("Please select a service");
+      return;
     }
-    setStep(step + 1);
+    if (step === 2 && (!formData.name || !formData.phone || !formData.date)) {
+      alert("Please fill Name, Phone & Date");
+      return;
+    }
+    setStep((current) => current + 1);
   };
 
   const handleSubmit = async () => {
-    const data = { ...formData, guests: parseInt(formData.guests) };
+    const guestCount = Number.parseInt(formData.guests, 10);
+    const selectedPackage = formData.package || formData.bentoType || formData.bridalPackage || formData.cuisineType || formData.eventCategory;
+    const data = { ...formData, package: selectedPackage, guests: Number.isFinite(guestCount) ? guestCount : 0 };
+
     try {
-      await fetch("https://fnbtechnologies.onrender.com/api/booking", {
+      const res = await fetch(apiUrl("/api/booking"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
-      
+      if (!res.ok) throw new Error("Booking failed");
+
       let extraDetails = "";
       if (formData.service === "Corporate Bento") {
-        extraDetails = `\n🍱 *Bento Type:* ${formData.bentoType || "–"}\n👥 *Pax:* ${formData.bentoPax || "–"}\n🏢 *Company:* ${formData.companyName || "–"}\n🕐 *Delivery Time:* ${formData.deliveryTime || "–"}`;
+        extraDetails = `\nBento Type: ${formData.bentoType || missing}\nPax: ${formData.bentoPax || missing}\nCompany: ${formData.companyName || missing}\nDelivery Time: ${formData.deliveryTime || missing}`;
       } else if (formData.service === "Bridal Makeup") {
-        extraDetails = `\n💄 *Package:* ${formData.bridalPackage || "–"}\n📅 *Trial Date:* ${formData.trialDate || "–"}`;
+        extraDetails = `\nPackage: ${formData.bridalPackage || missing}\nTrial Date: ${formData.trialDate || missing}`;
       } else if (formData.service === "Catering") {
-        extraDetails = `\n🍽️ *Cuisine:* ${formData.cuisineType || "–"}\n🎪 *Event Type:* ${formData.eventType || "–"}\n👥 *Guests:* ${formData.guests || "–"}`;
+        extraDetails = `\nCuisine: ${formData.cuisineType || missing}\nEvent Type: ${formData.eventType || missing}\nGuests: ${formData.guests || missing}`;
       } else if (formData.service === "Engagement") {
-        extraDetails = `\n🎨 *Theme:* ${formData.theme || "–"}\n📍 *Venue:* ${formData.venue || "–"}\n👥 *Guests:* ${formData.guests || "–"}`;
+        extraDetails = `\nTheme: ${formData.theme || missing}\nVenue: ${formData.venue || missing}\nGuests: ${formData.guests || missing}`;
       } else if (formData.service === "Event Planning") {
-        extraDetails = `\n🎪 *Event Category:* ${formData.eventCategory || "–"}\n👥 *Event Size:* ${formData.eventSize || "–"}\n💰 *Budget:* ${formData.budget || "–"}\n📍 *Venue:* ${formData.venue || "–"}`;
+        extraDetails = `\nEvent Category: ${formData.eventCategory || missing}\nEvent Size: ${formData.eventSize || missing}\nBudget: ${formData.budget || missing}\nVenue: ${formData.venue || missing}`;
       }
 
-      const whatsappMsg = `✨ *Nums-Nums Catering & Events — New Booking* ✨\n\n📋 *Service:* ${formData.service}\n👤 *Name:* ${formData.name}\n📱 *Phone:* ${formData.phone}\n📅 *Date:* ${formData.date}${extraDetails}\n\n📝 *Notes:* ${formData.notes || "None"}`;
-      window.open(`https://wa.me/601110085626?text=${encodeURIComponent(whatsappMsg)}`, "_blank");
-      
+      const whatsappMsg = `Nam-Nams Catering & Events - New Booking\n\nService: ${formData.service}\nName: ${formData.name}\nPhone: ${formData.phone}\nDate: ${formData.date}${extraDetails}\n\nNotes: ${formData.notes || "None"}`;
+      window.open(`https://wa.me/60162161632?text=${encodeURIComponent(whatsappMsg)}`, "_blank");
+
       onClose();
     } catch (err) {
       console.error("Booking failed:", err);
+      alert("Booking failed. Please try again.");
     }
   };
+
+  const selectStyle = {
+    width: "100%",
+    background: "#ffffff",
+    border: "none",
+    borderBottom: "1px solid rgba(247, 148, 31, 0.35)",
+    color: "var(--navy)",
+    padding: "14px 0",
+    fontFamily: "var(--font-jost), sans-serif",
+    outline: "none",
+  };
+
+  const optionStyle = { background: "#ffffff", color: "#06113c" };
 
   const renderServiceFields = () => {
     switch (formData.service) {
@@ -88,29 +113,33 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         return (
           <>
             <div className="form-group">
-              <select
-                value={formData.bentoType}
-                onChange={(e) => setFormData({...formData, bentoType: e.target.value})}
-                style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(201,169,110,0.25)', color: 'var(--white)', padding: '14px 0', fontFamily: 'var(--font-jost), sans-serif', outline: 'none' }}
-              >
-                <option value="" style={{ background: '#13100a' }}>Select Bento Type</option>
-                <option value="Malay Bento" style={{ background: '#13100a' }}>Malay Bento</option>
-                <option value="Western Bento" style={{ background: '#13100a' }}>Western Bento</option>
-                <option value="Chinese Bento" style={{ background: '#13100a' }}>Chinese Bento</option>
-                <option value="Japanese Bento" style={{ background: '#13100a' }}>Japanese Bento</option>
-                <option value="Mixed / Custom" style={{ background: '#13100a' }}>Mixed / Custom</option>
+              <select value={formData.bentoType} onChange={(e) => updateForm({ bentoType: e.target.value })} style={selectStyle}>
+                <option value="" style={optionStyle}>Select Bento Type</option>
+                <option value="Malay Bento" style={optionStyle}>Malay Bento</option>
+                <option value="Western Bento" style={optionStyle}>Western Bento</option>
+                <option value="Chinese Bento" style={optionStyle}>Chinese Bento</option>
+                <option value="Japanese Bento" style={optionStyle}>Japanese Bento</option>
+                <option value="Mixed / Custom" style={optionStyle}>Mixed / Custom</option>
               </select>
             </div>
             <div className="form-group">
-              <input type="number" placeholder="Number of Pax" min="10" value={formData.bentoPax} onChange={(e) => setFormData({...formData, bentoPax: e.target.value})} />
+              <select value={formData.package} onChange={(e) => updateForm({ package: e.target.value })} style={selectStyle}>
+                <option value="" style={optionStyle}>Select Package Range</option>
+                <option value="Essential Bento - from RM12/pax" style={optionStyle}>Essential Bento - from RM12/pax</option>
+                <option value="Premium Bento - from RM18/pax" style={optionStyle}>Premium Bento - from RM18/pax</option>
+                <option value="Executive Bento - from RM25/pax" style={optionStyle}>Executive Bento - from RM25/pax</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <input type="number" placeholder="Number of Pax" min="10" value={formData.bentoPax} onChange={(e) => updateForm({ bentoPax: e.target.value })} />
               <label>Number of Pax</label>
             </div>
             <div className="form-group">
-              <input type="text" placeholder="Company Name" value={formData.companyName} onChange={(e) => setFormData({...formData, companyName: e.target.value})} />
+              <input type="text" placeholder="Company Name" value={formData.companyName} onChange={(e) => updateForm({ companyName: e.target.value })} />
               <label>Company Name</label>
             </div>
             <div className="form-group">
-              <input type="time" value={formData.deliveryTime} onChange={(e) => setFormData({...formData, deliveryTime: e.target.value})} />
+              <input type="time" value={formData.deliveryTime} onChange={(e) => updateForm({ deliveryTime: e.target.value })} />
               <label>Delivery Time</label>
             </div>
           </>
@@ -119,20 +148,16 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         return (
           <>
             <div className="form-group">
-              <select
-                value={formData.bridalPackage}
-                onChange={(e) => setFormData({...formData, bridalPackage: e.target.value})}
-                style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(201,169,110,0.25)', color: 'var(--white)', padding: '14px 0', fontFamily: 'var(--font-jost), sans-serif', outline: 'none' }}
-              >
-                <option value="" style={{ background: '#13100a' }}>Select Package</option>
-                <option value="Nikah Package" style={{ background: '#13100a' }}>Nikah Package</option>
-                <option value="Reception Package" style={{ background: '#13100a' }}>Reception Package</option>
-                <option value="Full Day Package" style={{ background: '#13100a' }}>Full Day Package</option>
-                <option value="Bridesmaid Makeup" style={{ background: '#13100a' }}>Bridesmaid Makeup</option>
+              <select value={formData.bridalPackage} onChange={(e) => updateForm({ bridalPackage: e.target.value })} style={selectStyle}>
+                <option value="" style={optionStyle}>Select Package</option>
+                <option value="Nikah Package" style={optionStyle}>Nikah Package</option>
+                <option value="Reception Package" style={optionStyle}>Reception Package</option>
+                <option value="Full Day Package" style={optionStyle}>Full Day Package</option>
+                <option value="Bridesmaid Makeup" style={optionStyle}>Bridesmaid Makeup</option>
               </select>
             </div>
             <div className="form-group">
-              <input type="date" value={formData.trialDate} onChange={(e) => setFormData({...formData, trialDate: e.target.value})} />
+              <input type="date" value={formData.trialDate} onChange={(e) => updateForm({ trialDate: e.target.value })} />
               <label>Trial Makeup Date</label>
             </div>
           </>
@@ -141,24 +166,28 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         return (
           <>
             <div className="form-group">
-              <select
-                value={formData.cuisineType}
-                onChange={(e) => setFormData({...formData, cuisineType: e.target.value})}
-                style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(201,169,110,0.25)', color: 'var(--white)', padding: '14px 0', fontFamily: 'var(--font-jost), sans-serif', outline: 'none' }}
-              >
-                <option value="" style={{ background: '#13100a' }}>Select Cuisine</option>
-                <option value="Malay" style={{ background: '#13100a' }}>Malay</option>
-                <option value="Western" style={{ background: '#13100a' }}>Western</option>
-                <option value="Chinese" style={{ background: '#13100a' }}>Chinese</option>
-                <option value="Mixed Buffet" style={{ background: '#13100a' }}>Mixed Buffet</option>
+              <select value={formData.cuisineType} onChange={(e) => updateForm({ cuisineType: e.target.value })} style={selectStyle}>
+                <option value="" style={optionStyle}>Select Cuisine</option>
+                <option value="Malay" style={optionStyle}>Malay</option>
+                <option value="Western" style={optionStyle}>Western</option>
+                <option value="Chinese" style={optionStyle}>Chinese</option>
+                <option value="Mixed Buffet" style={optionStyle}>Mixed Buffet</option>
               </select>
             </div>
             <div className="form-group">
-              <input type="text" placeholder="Event Type" value={formData.eventType} onChange={(e) => setFormData({...formData, eventType: e.target.value})} />
+              <select value={formData.package} onChange={(e) => updateForm({ package: e.target.value })} style={selectStyle}>
+                <option value="" style={optionStyle}>Select Package Range</option>
+                <option value="Classic Buffet - from RM22/pax" style={optionStyle}>Classic Buffet - from RM22/pax</option>
+                <option value="Heritage Buffet - from RM32/pax" style={optionStyle}>Heritage Buffet - from RM32/pax</option>
+                <option value="Premium Event Buffet - from RM45/pax" style={optionStyle}>Premium Event Buffet - from RM45/pax</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <input type="text" placeholder="Event Type" value={formData.eventType} onChange={(e) => updateForm({ eventType: e.target.value })} />
               <label>Event Type (e.g. Wedding, Birthday)</label>
             </div>
             <div className="form-group">
-              <input type="number" placeholder="Guests" min="10" value={formData.guests} onChange={(e) => setFormData({...formData, guests: e.target.value})} />
+              <input type="number" placeholder="Guests" min="10" value={formData.guests} onChange={(e) => updateForm({ guests: e.target.value })} />
               <label>Estimated Guests</label>
             </div>
           </>
@@ -167,15 +196,15 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         return (
           <>
             <div className="form-group">
-              <input type="text" placeholder="Theme" value={formData.theme} onChange={(e) => setFormData({...formData, theme: e.target.value})} />
+              <input type="text" placeholder="Theme" value={formData.theme} onChange={(e) => updateForm({ theme: e.target.value })} />
               <label>Event Theme</label>
             </div>
             <div className="form-group">
-              <input type="text" placeholder="Venue" value={formData.venue} onChange={(e) => setFormData({...formData, venue: e.target.value})} />
+              <input type="text" placeholder="Venue" value={formData.venue} onChange={(e) => updateForm({ venue: e.target.value })} />
               <label>Venue / Location</label>
             </div>
             <div className="form-group">
-              <input type="number" placeholder="Guests" min="10" value={formData.guests} onChange={(e) => setFormData({...formData, guests: e.target.value})} />
+              <input type="number" placeholder="Guests" min="10" value={formData.guests} onChange={(e) => updateForm({ guests: e.target.value })} />
               <label>Estimated Guests</label>
             </div>
           </>
@@ -184,40 +213,32 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         return (
           <>
             <div className="form-group">
-              <select
-                value={formData.eventCategory}
-                onChange={(e) => setFormData({...formData, eventCategory: e.target.value})}
-                style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(201,169,110,0.25)', color: 'var(--white)', padding: '14px 0', fontFamily: 'var(--font-jost), sans-serif', outline: 'none' }}
-              >
-                <option value="" style={{ background: '#13100a' }}>Select Event Category</option>
-                <option value="Wedding" style={{ background: '#13100a' }}>Wedding</option>
-                <option value="Birthday Party" style={{ background: '#13100a' }}>Birthday Party</option>
-                <option value="Corporate Dinner" style={{ background: '#13100a' }}>Corporate Dinner</option>
-                <option value="Product Launch" style={{ background: '#13100a' }}>Product Launch</option>
-                <option value="Charity Gala" style={{ background: '#13100a' }}>Charity Gala</option>
-                <option value="Family Gathering" style={{ background: '#13100a' }}>Family Gathering</option>
-                <option value="Other" style={{ background: '#13100a' }}>Other</option>
+              <select value={formData.eventCategory} onChange={(e) => updateForm({ eventCategory: e.target.value })} style={selectStyle}>
+                <option value="" style={optionStyle}>Select Event Category</option>
+                <option value="Wedding" style={optionStyle}>Wedding</option>
+                <option value="Birthday Party" style={optionStyle}>Birthday Party</option>
+                <option value="Corporate Dinner" style={optionStyle}>Corporate Dinner</option>
+                <option value="Product Launch" style={optionStyle}>Product Launch</option>
+                <option value="Charity Gala" style={optionStyle}>Charity Gala</option>
+                <option value="Family Gathering" style={optionStyle}>Family Gathering</option>
+                <option value="Other" style={optionStyle}>Other</option>
               </select>
             </div>
             <div className="form-group">
-              <select
-                value={formData.eventSize}
-                onChange={(e) => setFormData({...formData, eventSize: e.target.value})}
-                style={{ width: '100%', background: 'transparent', border: 'none', borderBottom: '1px solid rgba(201,169,110,0.25)', color: 'var(--white)', padding: '14px 0', fontFamily: 'var(--font-jost), sans-serif', outline: 'none' }}
-              >
-                <option value="" style={{ background: '#13100a' }}>Event Size</option>
-                <option value="Intimate (10-30 pax)" style={{ background: '#13100a' }}>Intimate (10–30 pax)</option>
-                <option value="Medium (30-100 pax)" style={{ background: '#13100a' }}>Medium (30–100 pax)</option>
-                <option value="Large (100-300 pax)" style={{ background: '#13100a' }}>Large (100–300 pax)</option>
-                <option value="Grand (300+ pax)" style={{ background: '#13100a' }}>Grand (300+ pax)</option>
+              <select value={formData.eventSize} onChange={(e) => updateForm({ eventSize: e.target.value })} style={selectStyle}>
+                <option value="" style={optionStyle}>Event Size</option>
+                <option value="Intimate (10-30 pax)" style={optionStyle}>Intimate (10-30 pax)</option>
+                <option value="Medium (30-100 pax)" style={optionStyle}>Medium (30-100 pax)</option>
+                <option value="Large (100-300 pax)" style={optionStyle}>Large (100-300 pax)</option>
+                <option value="Grand (300+ pax)" style={optionStyle}>Grand (300+ pax)</option>
               </select>
             </div>
             <div className="form-group">
-              <input type="text" placeholder="Budget" value={formData.budget} onChange={(e) => setFormData({...formData, budget: e.target.value})} />
+              <input type="text" placeholder="Budget" value={formData.budget} onChange={(e) => updateForm({ budget: e.target.value })} />
               <label>Estimated Budget (RM)</label>
             </div>
             <div className="form-group">
-              <input type="text" placeholder="Venue" value={formData.venue} onChange={(e) => setFormData({...formData, venue: e.target.value})} />
+              <input type="text" placeholder="Venue" value={formData.venue} onChange={(e) => updateForm({ venue: e.target.value })} />
               <label>Venue / Location</label>
             </div>
           </>
@@ -228,15 +249,15 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
   };
 
   return (
-    <div className={`booking-overlay open visible`} onClick={(e) => e.target === e.currentTarget && onClose()}>
+    <div className="booking-overlay open visible" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="booking-modal">
-        <button className="booking-close" onClick={onClose}>✕</button>
+        <button className="booking-close" onClick={onClose}>x</button>
 
         <div className="booking-progress">
           {[
             { id: 1, label: "Service" },
             { id: 2, label: "Details" },
-            { id: 3, label: "Confirm" }
+            { id: 3, label: "Confirm" },
           ].map((s, idx) => (
             <React.Fragment key={s.id}>
               <div className={`bp-step ${step >= s.id ? "active" : ""} ${step > s.id ? "done" : ""}`}>
@@ -251,20 +272,20 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         {step === 1 && (
           <div className="booking-step active">
             <h3 className="booking-step-title">Select <em>Service</em></h3>
-            <p className="booking-step-sub">Choose the artistry you desire.</p>
+            <p className="booking-step-sub">Choose the service you need.</p>
             <div className="service-select-grid">
               {services.map((s) => (
-                <div 
-                  key={s.id} 
+                <div
+                  key={s.id}
                   className={`service-select-card ${formData.service === s.name ? "selected" : ""}`}
-                  onClick={() => setFormData({...formData, service: s.name})}
-                  style={{ position: 'relative', overflow: 'hidden', minHeight: '140px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 0 }}
+                  onClick={() => updateForm({ service: s.name })}
+                  style={{ position: "relative", overflow: "hidden", minHeight: "140px", display: "flex", alignItems: "center", justifyContent: "center", padding: 0 }}
                 >
-                  <img src={s.image} alt={s.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: formData.service === s.name ? 0.8 : 0.4, transition: 'opacity 0.3s' }} />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10, 8, 6, 0.9) 0%, rgba(10, 8, 6, 0.2) 100%)' }} />
-                  <div style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-                    <div style={{ fontSize: '1.8rem', marginBottom: '8px' }}>{s.icon}</div>
-                    <div className="ssc-name" style={{ fontSize: '1.1rem' }}>{s.name}</div>
+                  <img src={s.image} alt={s.name} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: formData.service === s.name ? 0.8 : 0.4, transition: "opacity 0.3s" }} />
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(10, 8, 6, 0.9) 0%, rgba(10, 8, 6, 0.2) 100%)" }} />
+                  <div style={{ position: "relative", zIndex: 2, textAlign: "center" }}>
+                    <div style={{ fontSize: "1rem", marginBottom: "8px", fontWeight: 800, letterSpacing: "0.14em" }}>{s.icon}</div>
+                    <div className="ssc-name" style={{ fontSize: "1.1rem" }}>{s.name}</div>
                   </div>
                 </div>
               ))}
@@ -279,28 +300,27 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
               {formData.service === "Corporate Bento" ? "Tell us about your bento order." :
                formData.service === "Bridal Makeup" ? "Tell us about your special day." :
                formData.service === "Catering" ? "Tell us about your event." :
-               formData.service === "Event Planning" ? "Let us plan your perfect event." :
+               formData.service === "Event Planning" ? "Let us plan your event." :
                "Tell us about your celebration."}
             </p>
             <div className="booking-form-grid">
               <div className="form-group full">
-                <input type="text" placeholder="Name" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} required />
+                <input type="text" placeholder="Name" value={formData.name} onChange={(e) => updateForm({ name: e.target.value })} required />
                 <label>Name</label>
               </div>
               <div className="form-group">
-                <input type="text" placeholder="Phone" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required />
+                <input type="text" placeholder="Phone" value={formData.phone} onChange={(e) => updateForm({ phone: e.target.value })} required />
                 <label>Phone</label>
               </div>
               <div className="form-group">
-                <input type="date" value={formData.date} onChange={(e) => setFormData({...formData, date: e.target.value})} required />
+                <input type="date" value={formData.date} onChange={(e) => updateForm({ date: e.target.value })} required />
                 <label>{formData.service === "Corporate Bento" ? "Delivery Date" : "Event Date"}</label>
               </div>
 
-              {/* Dynamic service-specific fields */}
               {renderServiceFields()}
 
               <div className="form-group full">
-                <textarea placeholder="Additional notes or requests" value={formData.notes} onChange={(e) => setFormData({...formData, notes: e.target.value})} style={{ minHeight: '60px' }} />
+                <textarea placeholder="Additional notes or requests" value={formData.notes} onChange={(e) => updateForm({ notes: e.target.value })} style={{ minHeight: "60px" }} />
                 <label>Additional Notes</label>
               </div>
             </div>
@@ -315,8 +335,8 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
               <div className="confirm-row"><span className="confirm-label">Name</span><span className="confirm-value">{formData.name}</span></div>
               <div className="confirm-row"><span className="confirm-label">Phone</span><span className="confirm-value">{formData.phone}</span></div>
               <div className="confirm-row"><span className="confirm-label">Date</span><span className="confirm-value">{formData.date}</span></div>
-              
-              {/* Dynamic confirm fields */}
+              {formData.package && <div className="confirm-row"><span className="confirm-label">Package</span><span className="confirm-value">{formData.package}</span></div>}
+
               {formData.service === "Corporate Bento" && (
                 <>
                   {formData.bentoType && <div className="confirm-row"><span className="confirm-label">Bento Type</span><span className="confirm-value">{formData.bentoType}</span></div>}
@@ -356,14 +376,13 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
               {formData.notes && <div className="confirm-row"><span className="confirm-label">Notes</span><span className="confirm-value">{formData.notes}</span></div>}
             </div>
             <button className="book-btn-whatsapp" onClick={handleSubmit}>
-              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.37 0-4.567-.82-6.29-2.19l-.44-.37-3.28 1.1 1.1-3.28-.37-.44A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10-10-4.477 10-10 10z"/></svg>
               Confirm & WhatsApp
             </button>
           </div>
         )}
 
         <div className="booking-nav">
-          {step > 1 && <button className="book-btn-back" onClick={() => setStep(step - 1)}>Back</button>}
+          {step > 1 && <button className="book-btn-back" onClick={() => setStep((current) => current - 1)}>Back</button>}
           {step < 3 && <button className="book-btn-next" onClick={handleNext}>Next Step</button>}
         </div>
       </div>

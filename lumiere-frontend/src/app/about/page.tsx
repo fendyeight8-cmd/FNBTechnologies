@@ -32,9 +32,9 @@ export default function AboutPage() {
 
   return (
     <main className="about-page">
-      <Navbar 
-        onOpenBooking={() => setIsBookingOpen(true)} 
-        onOpenAdmin={handleOpenAdmin} 
+      <Navbar
+        onOpenBooking={() => setIsBookingOpen(true)}
+        onOpenAdmin={handleOpenAdmin}
       />
 
       <div className="about-hero reveal">
@@ -42,29 +42,29 @@ export default function AboutPage() {
           Our <em>Story</em>
         </h1>
         <p className="about-hero-subtitle">
-          From humble beginnings in Sabah to becoming the region's most sought-after catering & event specialists — this is the Nums-Nums journey.
+          From humble beginnings in Sabah to becoming the region&apos;s most sought-after catering & event specialists - this is the Nam-Nams journey.
         </p>
       </div>
 
       <div className="about-content">
         <div className="about-text reveal">
           <div className="section-eyebrow">The Beginning</div>
-          <h2 className="section-title" style={{ fontSize: '3rem', marginBottom: '32px' }}>
+          <h2 className="section-title" style={{ fontSize: "3rem", marginBottom: "32px" }}>
             Born from <em>Passion</em>
           </h2>
           <p>
-            <strong>Nums-Nums Catering & Event</strong> was founded with one simple belief: food is love, made visible. What started as a small family kitchen catering for intimate gatherings in Kota Kinabalu has grown into Sabah's premier event and catering powerhouse — a proud subsidiary of <em>Food & Beverage Technologies</em>.
+            <strong>Nam-Nams Catering & Event</strong> was founded with one simple belief: food is love, made visible. What started as a small family kitchen catering for intimate gatherings in Kota Kinabalu has grown into Sabah&apos;s premier event and catering powerhouse - a proud subsidiary of <em>Food & Beverage Technologies</em>.
           </p>
           <p>
-            Our name "Nums-Nums" captures the childlike joy of that first irresistible bite — a moment of pure delight that we strive to recreate at every event. From royal weddings to corporate galas, our team of master chefs, event architects, and bridal artisans orchestrate unforgettable experiences with warmth, precision, and a distinctly Malaysian flair.
+            Our name &quot;Nam-Nams&quot; captures the childlike joy of that first irresistible bite - a moment of pure delight that we strive to recreate at every event. From royal weddings to corporate galas, our team of master chefs, event architects, and bridal artisans orchestrate unforgettable experiences with warmth, precision, and a distinctly Malaysian flair.
           </p>
           <p>
-            We believe luxury doesn't have to be distant or cold. At Nums-Nums, luxury is welcoming. It's the aroma of freshly prepared nasi lemak next to artisan canapés, a smile from our service team, and the confident feeling that every last detail has been perfected — just for you.
+            We believe luxury doesn&apos;t have to be distant or cold. At Nam-Nams, luxury is welcoming. It&apos;s the aroma of freshly prepared nasi lemak next to artisan canapes, a smile from our service team, and the confident feeling that every last detail has been perfected - just for you.
           </p>
         </div>
         <div className="about-image-wrapper reveal reveal-delay-1">
           <div className="about-image-inner">
-            <img src="/images/hero3.png" alt="Nums-Nums Culinary Artistry" loading="lazy" />
+            <img src="/images/hero3.png" alt="Nam-Nams Culinary Artistry" loading="lazy" />
           </div>
         </div>
       </div>
@@ -90,13 +90,13 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <br/><br/><br/>
+      <br /><br /><br />
 
       <Footer />
 
-      <BookingModal 
-        isOpen={isBookingOpen} 
-        onClose={() => setIsBookingOpen(false)} 
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
       />
     </main>
   );

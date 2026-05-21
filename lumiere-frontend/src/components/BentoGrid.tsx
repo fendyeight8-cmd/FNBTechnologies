@@ -1,55 +1,38 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 const bentoData = [
   {
     id: 0,
-    title: "Feast & Elegance",
-    cat: "Catering",
-    desc: "A stunning spread of culinary masterpieces.",
+    title: "Buffet Catering",
+    cat: "Menu",
+    desc: "Feast on a lavish spread of culinary delights.",
     images: [
-      "https://images.unsplash.com/photo-1547592180-85f173990554?w=900&q=80",
-      "https://images.unsplash.com/photo-1555244162-803834f70033?w=900&q=80",
-      "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=900&q=80"
+      "https://images.unsplash.com/photo-1547592180-85f173990554?w=900&q=80"
     ],
     classes: "tall wide",
   },
   {
     id: 1,
-    title: "Bridal Beauty",
-    cat: "Makeup",
-    desc: "Flawless artistry for your most special day.",
+    title: "Premium Bento",
+    cat: "Menu",
+    desc: "Feast on a lavish spread of customised culinary delights.",
     images: [
-      "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80",
-      "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80"
+      "https://images.unsplash.com/photo-1555244162-803834f70033?w=900&q=80"
     ],
-    classes: "",
+    classes: "tall",
   },
   {
     id: 2,
-    title: "Fine Dining",
-    cat: "Catering",
-    desc: "Exquisite courses crafted with precision.",
+    title: "Assorted Kuih",
+    cat: "Menu",
+    desc: "Finish your meals with a choice of heritage desserts.",
     images: [
-      "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80",
-      "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=600&q=80"
+      "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=900&q=80"
     ],
-    classes: "",
-  },
-  {
-    id: 3,
-    title: "Sweet Creations",
-    cat: "Catering",
-    desc: "Delicate pastries and bespoke celebration cakes.",
-    images: [
-      "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&q=80",
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600&q=80",
-      "https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&q=80"
-    ],
-    classes: "wide",
-  },
+    classes: "tall",
+  }
 ];
 
 const BentoItem = ({ item }: { item: typeof bentoData[0] }) => {
@@ -127,11 +110,11 @@ export default function BentoGrid() {
   }, []);
 
   return (
-    <section className="bento-section" id="gallery">
+    <section className="bento-section dalca-offerings" id="offerings">
       <div className="gallery-header" style={{ textAlign: "center", marginBottom: "80px" }}>
-        <div className="section-eyebrow reveal">Portfolio</div>
+        <div className="section-eyebrow reveal">Our Offerings</div>
         <h2 className="section-title reveal reveal-delay-1">
-          Our <em>Work</em>
+          Catering <em>Options</em>
         </h2>
       </div>
       <div className="bento-grid">

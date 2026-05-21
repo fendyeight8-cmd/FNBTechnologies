@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import Cursor from "@/components/Cursor";
 import ScrollToTop from "@/components/ScrollToTop";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -19,8 +20,11 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "Nums-Nums Catering & Event | Premium Catering in Sabah",
-  description: "Nums-Nums Catering & Event — Where every bite tells a story. Premium catering, luxury event design, and cinematic bridal artistry in Kota Kinabalu, Sabah. Owned by Food & Beverage Technologies.",
+  title: "Nam-Nams",
+  description: "Nam-Nams Catering Malaysia Delights Your Guests With Memorial Experience On Your Corporate Event, School Special Function, Private Party.",
+  icons: {
+    icon: "/images/nam-nams-logo.svg",
+  },
 };
 
 export default function RootLayout({
@@ -31,9 +35,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${jost.variable} ${cormorant.variable} antialiased`}>
-        <div className="grain" />
         <Cursor />
         <ScrollToTop />
+        <ScrollReveal />
         {children}
       </body>
     </html>

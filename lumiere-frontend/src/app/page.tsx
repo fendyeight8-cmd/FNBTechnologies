@@ -11,6 +11,10 @@ import Contact from "@/components/Contact";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import BookingModal from "@/components/BookingModal";
+import GalleryProof from "@/components/GalleryProof";
+import ClientLogos from "@/components/ClientLogos";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import HeritageTaste from "@/components/HeritageTaste";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -34,9 +38,13 @@ export default function Home() {
       <BentoGrid />
       <DualPanel />
       <CorporateBento onOpenBooking={() => setIsBookingOpen(true)} />
-      <Contact />
+      <GalleryProof />
+      <HeritageTaste />
       <Testimonials />
+      <ClientLogos />
+      <Contact />
       <Footer />
+      <FloatingWhatsApp />
 
       <BookingModal 
         isOpen={isBookingOpen} 

@@ -15,30 +15,34 @@ export default function Navbar({ onOpenBooking, onOpenAdmin }: { onOpenBooking: 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const closeMenu = () => setMobileMenuOpen(false);
+
   return (
     <>
-      <nav className={`${scrolled ? "scrolled" : ""} ${mobileMenuOpen ? "menu-active" : ""}`}>
-        <Link href="/" className="logo" onClick={() => setMobileMenuOpen(false)} style={{ fontSize: '1.6rem', fontWeight: '800', letterSpacing: '0.04em', textTransform: 'uppercase', lineHeight: '1.1' }}>
-          Nums-Nums<span style={{ color: 'var(--gold)', fontSize: '0.55em', display: 'block', letterSpacing: '0.15em', fontWeight: '300', marginTop: '-2px' }}>Catering & Events</span><span style={{ fontSize: '0.35em', display: 'block', letterSpacing: '0.12em', fontWeight: '300', opacity: 0.5, marginTop: '2px' }}>Owned By F&B Tech</span>
+      <nav className={`dalca-nav ${scrolled ? "scrolled" : ""} ${mobileMenuOpen ? "menu-active" : ""}`}>
+        <Link href="/" className="logo dalca-logo" onClick={closeMenu}>
+          <img className="brand-mark" src="/images/nam-nams-logo.svg" alt="Nam-Nams" />
+          <span className="brand-wordmark">
+            <strong>Nam-Nams</strong>
+            <small>Owned by F&amp;B Technologies</small>
+          </span>
         </Link>
 
-        {/* Desktop Links */}
         <ul className="nav-links desktop-only">
           <li><Link href="/">Home</Link></li>
-          <li><Link href="/about">About Us</Link></li>
-          <li><Link href="/gallery">Gallery</Link></li>
+          <li><Link href="/#specialize">Services</Link></li>
+          <li><Link href="/cateringmenu">Menu</Link></li>
+          <li><Link href="/about">About</Link></li>
           <li><Link href="/#contact">Contact</Link></li>
         </ul>
 
-        {/* Desktop Actions */}
-        <div className="nav-actions desktop-only" style={{ display: 'flex', gap: '15px' }}>
-          <button className="btn-primary" style={{ padding: '8px 20px', fontSize: '0.6rem' }} onClick={onOpenBooking}>Book Now</button>
+        <div className="nav-actions desktop-only">
+          <button className="btn-primary" onClick={onOpenBooking}>Order Now</button>
           <button className="nav-admin-btn" onClick={onOpenAdmin}>Admin</button>
         </div>
 
-        {/* Mobile Toggle Button */}
-        <button 
-          className={`mobile-menu-toggle ${mobileMenuOpen ? "active" : ""}`} 
+        <button
+          className={`mobile-menu-toggle ${mobileMenuOpen ? "active" : ""}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle navigation menu"
         >
@@ -48,36 +52,32 @@ export default function Navbar({ onOpenBooking, onOpenAdmin }: { onOpenBooking: 
         </button>
       </nav>
 
-      {/* Mobile Menu Drawer */}
       <div className={`mobile-drawer ${mobileMenuOpen ? "open" : ""}`}>
-        <div className="drawer-overlay" onClick={() => setMobileMenuOpen(false)}></div>
+        <div className="drawer-overlay" onClick={closeMenu}></div>
         <div className="drawer-content">
           <ul className="drawer-links">
-            <li style={{ transitionDelay: '0.1s' }}>
-              <Link href="/" onClick={() => setMobileMenuOpen(false)}>Home</Link>
-            </li>
-            <li style={{ transitionDelay: '0.2s' }}>
-              <Link href="/about" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
-            </li>
-            <li style={{ transitionDelay: '0.3s' }}>
-              <Link href="/gallery" onClick={() => setMobileMenuOpen(false)}>Gallery</Link>
-            </li>
-            <li style={{ transitionDelay: '0.4s' }}>
-              <Link href="/#contact" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
-            </li>
+            <li><Link href="/" onClick={closeMenu}>Home</Link></li>
+            <li><Link href="/#specialize" onClick={closeMenu}>Services</Link></li>
+            <li><Link href="/cateringmenu" onClick={closeMenu}>Menu</Link></li>
+            <li><Link href="/about" onClick={closeMenu}>About</Link></li>
+            <li><Link href="/#contact" onClick={closeMenu}>Contact</Link></li>
           </ul>
-          <div className="drawer-actions" style={{ transitionDelay: '0.5s' }}>
-            <button 
-              className="btn-primary" 
-              style={{ width: '100%', marginBottom: '15px', padding: '14px' }} 
-              onClick={() => { setMobileMenuOpen(false); onOpenBooking(); }}
+          <div className="drawer-actions">
+            <button
+              className="btn-primary"
+              onClick={() => {
+                closeMenu();
+                onOpenBooking();
+              }}
             >
-              Book Now
+              Order Now
             </button>
-            <button 
-              className="nav-admin-btn" 
-              style={{ width: '100%', padding: '14px' }} 
-              onClick={() => { setMobileMenuOpen(false); onOpenAdmin(); }}
+            <button
+              className="nav-admin-btn"
+              onClick={() => {
+                closeMenu();
+                onOpenAdmin();
+              }}
             >
               Admin
             </button>

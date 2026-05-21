@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { apiUrl } from "@/lib/api";
 
 interface BookedData {
-  [key: string]: {
+  [key: string]: Array<{
     service: string;
     time: string;
     status: string;
-  };
+  }>;
 }
 
 export default function Calendar() {
@@ -15,18 +16,30 @@ export default function Calendar() {
   const [bookedDates, setBookedDates] = useState<BookedData>({});
   const [hoveredEvent, setHoveredEvent] = useState<{ service: string; time: string; x: number; y: number } | null>(null);
 
-  const fetchDates = async () => {
-    try {
-      const res = await fetch("https://fnbtechnologies.onrender.com/api/booked-dates");
-      const data = await res.json();
-      setBookedDates(data);
-    } catch (err) {
-      console.error("Failed to fetch booked dates:", err);
-    }
-  };
-
   useEffect(() => {
-    fetchDates();
+    let active = true;
+
+    const fetchDates = async () => {
+      try {
+        const res = await fetch(apiUrl("/api/booked-dates"));
+        if (!res.ok) throw new Error("Failed to fetch booked dates");
+        const data = await res.json();
+        if (!active) return;
+
+        const normalized: BookedData = {};
+        Object.entries(data).forEach(([date, value]) => {
+          normalized[date] = Array.isArray(value) ? value as BookedData[string] : [value as BookedData[string][number]];
+        });
+        setBookedDates(normalized);
+      } catch (err) {
+        console.error("Failed to fetch booked dates:", err);
+      }
+    };
+
+    void fetchDates();
+    return () => {
+      active = false;
+    };
   }, []);
 
   const renderDays = () => {
@@ -48,18 +61,19 @@ export default function Calendar() {
       const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
       const thisDate = new Date(year, month, i);
       const isBooked = !!bookedDates[dateStr];
-      const isPast = thisDate < today;
+      const bookings = bookedDates[dateStr] || [];
+      const eventSummary = bookings[0];
 
       days.push(
         <div
           key={i}
-          className={`calendar-day ${isBooked ? "booked-red" : ""} ${thisDate.getTime() === today.getTime() ? "today" : ""}`}
+          className={`calendar-day ${isBooked ? "booked-red" : ""} ${thisDate < today ? "past" : ""} ${thisDate.getTime() === today.getTime() ? "today" : ""}`}
           onMouseEnter={(e) => {
-            if (isBooked) {
+            if (eventSummary) {
               const rect = e.currentTarget.getBoundingClientRect();
               setHoveredEvent({
-                service: bookedDates[dateStr].service,
-                time: bookedDates[dateStr].time,
+                service: bookings.length > 1 ? `${eventSummary.service} +${bookings.length - 1} more` : eventSummary.service,
+                time: eventSummary.time,
                 x: rect.left + rect.width / 2,
                 y: rect.top,
               });

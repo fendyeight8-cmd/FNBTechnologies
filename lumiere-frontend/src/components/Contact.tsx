@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Calendar from "./Calendar";
+import { apiUrl } from "@/lib/api";
 
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -43,11 +44,12 @@ export default function Contact() {
     };
 
     try {
-      await fetch("https://fnbtechnologies.onrender.com/api/booking", {
+      const res = await fetch(apiUrl("/api/booking"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
       });
+      if (!res.ok) throw new Error("Submission failed");
       alert("Enquiry sent successfully!");
       setFormData({ name: "", email: "", event: "", date: "", msg: "" });
     } catch (err) {
@@ -60,22 +62,22 @@ export default function Contact() {
       <div className="contact-inner">
         <div>
           <div className="section-eyebrow reveal">Contact Us</div>
-          <h2 className="section-title reveal reveal-delay-1">Let's Create<br /><em>Together</em></h2>
+          <h2 className="section-title reveal reveal-delay-1">Let&apos;s Create<br /><em>Together</em></h2>
           <p className="section-body reveal reveal-delay-2">
-            Ready to make your event extraordinary? Contact us and let's start creating something beautiful.
+            Ready to make your event extraordinary? Contact us and let&apos;s start creating something beautiful.
           </p>
           <div style={{ marginTop: '60px' }}>
             <div className="contact-detail reveal reveal-delay-1">
               <div className="cd-label">Location</div>
-              <div className="cd-value">Kota Kinabalu, Sabah, Malaysia</div>
+              <div className="cd-value">11 Jalan 1A/114, Kuchai Business Centre, 58200 Kuala Lumpur</div>
             </div>
             <div className="contact-detail reveal reveal-delay-2">
               <div className="cd-label">Email</div>
-              <div className="cd-value">affendy@gmail.com</div>
+              <div className="cd-value">masakanwarisan@vezion.com.my</div>
             </div>
             <div className="contact-detail reveal reveal-delay-3">
               <div className="cd-label">Phone / WhatsApp</div>
-              <div className="cd-value">+60 11-1008 5626</div>
+              <div className="cd-value">+60 3 6412 9763</div>
             </div>
           </div>
         </div>

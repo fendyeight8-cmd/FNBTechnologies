@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Nam-Nams logo</title>
+  <desc id="desc">Circular teal and gold food service mark with chef hat, leaf, fork, and flowing plate lines.</desc>
+  <rect width="512" height="512" rx="256" fill="#123F42"/>
+  <circle cx="256" cy="256" r="226" stroke="#C8B27A" stroke-width="16"/>
+  <circle cx="256" cy="256" r="198" stroke="#0A2E31" stroke-width="10"/>
+  <path d="M165 185C166 154 194 129 227 129C239 102 275 91 302 109C319 100 344 104 359 119C376 136 380 162 369 183C355 210 322 219 297 205" stroke="#C8B27A" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M183 197C211 202 252 203 291 190" stroke="#C8B27A" stroke-width="15" stroke-linecap="round"/>
+  <path d="M181 345C211 291 254 251 315 223" stroke="#C8B27A" stroke-width="18" stroke-linecap="round"/>
+  <path d="M214 362C235 321 272 282 328 249" stroke="#C8B27A" stroke-width="12" stroke-linecap="round"/>
+  <path d="M164 355C144 318 153 279 187 244" stroke="#C8B27A" stroke-width="16" stroke-linecap="round"/>
+  <path d="M256 376C292 345 324 303 350 252" stroke="#C8B27A" stroke-width="12" stroke-linecap="round"/>
+  <path d="M337 175C368 171 391 153 408 126" stroke="#C8B27A" stroke-width="13" stroke-linecap="round"/>
+  <path d="M373 159C380 180 379 201 369 223" stroke="#C8B27A" stroke-width="11" stroke-linecap="round"/>
+  <path d="M349 170C342 147 342 125 350 104" stroke="#C8B27A" stroke-width="11" stroke-linecap="round"/>
+  <path d="M401 220L452 271" stroke="#C8B27A" stroke-width="13" stroke-linecap="round"/>
+  <path d="M414 205L462 253" stroke="#C8B27A" stroke-width="9" stroke-linecap="round"/>
+  <path d="M428 192L474 238" stroke="#C8B27A" stroke-width="9" stroke-linecap="round"/>
+  <path d="M357 286C385 312 408 339 428 368C386 366 349 357 317 339" stroke="#C8B27A" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

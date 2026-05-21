@@ -4,16 +4,16 @@ import { useState, useEffect } from "react";
 
 const testimonials = [
   {
-    quote: "Nums-Nums transformed our wedding into a fairytale. The food was spectacular, the setup was breathtaking, and every single guest complimented the experience. We couldn't have asked for more.",
-    author: "Siti Rahimah — Wedding Client, Penang"
+    quote: "Nam-Nams Catering transformed our corporate event. The food was authentic, the setup was elegant, and the service was impeccable.",
+    author: "Siti Rahimah — Corporate Client, Penang"
   },
   {
-    quote: "My makeup artist from Nums-Nums was an absolute genius. She understood my vision perfectly and made me feel like a queen on my special day. Truly world-class artistry.",
-    author: "Amirah Lim — Bridal Client, KL"
+    quote: "The Premium Bento sets were an absolute hit during our annual meeting. Delicious Malaysian flavors, beautifully packaged, and delivered right on time.",
+    author: "Amirah Lim — HR Manager"
   },
   {
-    quote: "We've used Nums-Nums for three consecutive corporate galas. The consistency, creativity, and professionalism are unmatched. They make us look good every single time.",
-    author: "Dato' Ahmad — Corporate Event, Kota Kinabalu"
+    quote: "We've used Nam-Nams for three consecutive school events. Their consistency, quality, and professionalism are truly unmatched.",
+    author: "Dato' Ahmad — Principal"
   }
 ];
 
