@@ -2373,13 +2373,18 @@ body {
 
 .hero-cta-group {
   justify-content: flex-start;
+  margin-bottom: 24px;
+}
+
+.dalca-hero-copy {
+  padding-bottom: 100px;
 }
 
 .hero-service-strip {
   position: absolute;
   left: clamp(20px, 5vw, 70px);
   right: clamp(20px, 5vw, 70px);
-  bottom: 34px;
+  bottom: 28px;
   z-index: 12;
   display: flex;
   gap: 12px;
@@ -2394,6 +2399,7 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   background: rgba(0, 0, 0, 0.16);
+  white-space: nowrap;
 }
 
 .hero-service-strip span.active {
@@ -3186,15 +3192,19 @@ section {
 @media (max-width: 768px) {
   .dalca-hero-copy {
     text-align: center;
+    padding-bottom: 120px;
   }
 
   .hero-cta-group {
     justify-content: center;
     flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
   }
 
   .hero-service-strip {
     justify-content: center;
+    bottom: 20px;
   }
 
   .bento-grid,
