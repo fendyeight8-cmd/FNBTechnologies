@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import { apiUrl } from "@/lib/api";
 
 const services = [
-  { id: "bridal", name: "Bridal Makeup", icon: "BM", image: "/images/bridal_makeup.png" },
-  { id: "catering", name: "Catering", icon: "CT", image: "/images/catering.png" },
-  { id: "bento", name: "Corporate Bento", icon: "CB", image: "/images/corporate_event.png" },
-  { id: "event", name: "Event Planning", icon: "EP", image: "/images/hero2.png" },
-  { id: "engagement", name: "Engagement", icon: "EN", image: "/images/engagement.png" },
-  { id: "tasting", name: "Food Tasting", icon: "FT", image: "/images/food_testing.png" },
+  { id: "bridal", name: "Bridal Makeup", icon: "BM", image: "/images/bridal_makeup.webp" },
+  { id: "catering", name: "Catering", icon: "CT", image: "/images/catering.webp" },
+  { id: "bento", name: "Corporate Bento", icon: "CB", image: "/images/corporate_event.webp" },
+  { id: "event", name: "Event Planning", icon: "EP", image: "/images/hero2.webp" },
+  { id: "engagement", name: "Engagement", icon: "EN", image: "/images/engagement.webp" },
+  { id: "tasting", name: "Food Tasting", icon: "FT", image: "/images/food_testing.webp" },
 ];
 
 const missing = "-";

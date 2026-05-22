@@ -577,6 +577,8 @@ def add_header(response):
         response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
         response.headers['Pragma'] = 'no-cache'
         response.headers['Expires'] = '-1'
+    elif response.mimetype in ['text/css', 'application/javascript', 'image/webp', 'image/jpeg', 'image/png', 'image/svg+xml', 'font/woff2']:
+        response.headers['Cache-Control'] = 'public, max-age=31536000, immutable'
     return response
 
 if __name__ == '__main__':

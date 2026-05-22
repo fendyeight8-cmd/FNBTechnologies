@@ -2,7 +2,7 @@ export default function DualPanel() {
   return (
     <section className="dalca-about-band" id="about">
       <div className="dalca-about-image">
-        <img src="/images/catering.png" alt="Prepared Malaysian catering spread" loading="lazy" />
+        <img src="/images/catering.webp" alt="Prepared Malaysian catering spread" loading="lazy" />
       </div>
 
       <div className="dalca-about-copy">

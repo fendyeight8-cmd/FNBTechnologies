@@ -5,19 +5,19 @@ import { useEffect, useState } from "react";
 const specializations = [
   {
     name: "Family Events",
-    img: "/images/engagement.png",
+    img: "/images/engagement.webp",
     desc: "Celebration menus for birthdays, festival gatherings, intimate functions, and family occasions.",
     bullets: ["Festival gatherings", "Celebration parties", "Special occasions", "Birthday celebrations"],
   },
   {
     name: "Corporate Functions",
-    img: "/images/corporate_event.png",
+    img: "/images/corporate_event.webp",
     desc: "Catering packages for meetings, product launches, open houses, seminars, and office events.",
     bullets: ["Meetings", "Seminars & conferences", "Product launches", "Corporate open house"],
   },
   {
     name: "Schools & Canteens",
-    img: "/images/nam_nams_bento.jpg",
+    img: "/images/nam_nams_bento.webp",
     desc: "Daily customised meals for schools, offices, and factories, cooked fresh for small or large groups.",
     bullets: ["Kindergartens and schools", "Universities", "Office cafeteria", "Factory canteens"],
   },
@@ -43,10 +43,10 @@ const whyChoose = [
 ];
 
 const bentoTypes = [
-  { name: "Malay Bento", img: "/images/bento_malay.png" },
-  { name: "Western Bento", img: "/images/bento_western.png" },
-  { name: "Chinese Bento", img: "/images/bento_chinese.png" },
-  { name: "Japanese Bento", img: "/images/bento_japanese.png" },
+  { name: "Malay Bento", img: "/images/bento_malay.webp" },
+  { name: "Western Bento", img: "/images/bento_western.webp" },
+  { name: "Chinese Bento", img: "/images/bento_chinese.webp" },
+  { name: "Japanese Bento", img: "/images/bento_japanese.webp" },
 ];
 
 export default function CorporateBento({ onOpenBooking }: { onOpenBooking: () => void }) {

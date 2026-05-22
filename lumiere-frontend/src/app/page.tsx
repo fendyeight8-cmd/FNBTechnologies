@@ -10,13 +10,15 @@ import CorporateBento from "@/components/CorporateBento";
 import Contact from "@/components/Contact";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
-import BookingModal from "@/components/BookingModal";
+import dynamic from "next/dynamic";
 import GalleryProof from "@/components/GalleryProof";
 import ClientLogos from "@/components/ClientLogos";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import HeritageTaste from "@/components/HeritageTaste";
 import FoodTasting from "@/components/FoodTasting";
 import { useRouter } from "next/navigation";
+
+const BookingModal = dynamic(() => import("@/components/BookingModal"), { ssr: false });
 
 export default function Home() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);

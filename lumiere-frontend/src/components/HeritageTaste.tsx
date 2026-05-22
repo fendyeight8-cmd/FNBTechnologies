@@ -43,22 +43,22 @@ export default function HeritageTaste() {
 
   const images = [
     {
-      src: "/images/bento_malay.png",
+      src: "/images/bento_malay.webp",
       alt: "Malay heritage catering dish",
       className: "heritage-card heritage-card--wide",
     },
     {
-      src: "/images/gallery2.png",
+      src: "/images/gallery2.webp",
       alt: "Prepared Malaysian catering spread",
       className: "heritage-card heritage-card--tall",
     },
     {
-      src: "/images/bento_chinese.png",
+      src: "/images/bento_chinese.webp",
       alt: "Chinese inspired catering dish",
       className: "heritage-card heritage-card--wide",
     },
     {
-      src: "/images/catering.png",
+      src: "/images/catering.webp",
       alt: "Buffet catering arrangement",
       className: "heritage-card heritage-card--large",
     },

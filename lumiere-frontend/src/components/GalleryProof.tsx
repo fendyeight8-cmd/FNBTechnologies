@@ -1,10 +1,10 @@
 const gallery = [
-  { src: "/images/gallery1.png", title: "Grand Reception" },
-  { src: "/images/gallery2.png", title: "Culinary Setup" },
-  { src: "/images/catering.png", title: "Buffet Catering" },
-  { src: "/images/corporate_event.png", title: "Corporate Event" },
-  { src: "/images/bento_malay.png", title: "Malay Bento" },
-  { src: "/images/engagement.png", title: "Family Event" },
+  { src: "/images/gallery1.webp", title: "Grand Reception" },
+  { src: "/images/gallery2.webp", title: "Culinary Setup" },
+  { src: "/images/catering.webp", title: "Buffet Catering" },
+  { src: "/images/corporate_event.webp", title: "Corporate Event" },
+  { src: "/images/bento_malay.webp", title: "Malay Bento" },
+  { src: "/images/engagement.webp", title: "Family Event" },
 ];
 
 export default function GalleryProof() {

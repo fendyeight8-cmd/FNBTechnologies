@@ -12,7 +12,7 @@ const menuSections = [
     eyebrow: "Our Menu",
     title: "Buffet Catering",
     minimum: "Minimum 30 pax",
-    image: "/images/buffet_catering.jpg",
+    image: "/images/buffet_catering.webp",
     description:
       "A flexible buffet service for events, parties, family gatherings, and corporate functions. Guests can enjoy generous portions, casual movement, and a warm dining experience.",
     items: ["Breakfast Catering Buffet", "Lunch Catering Buffet", "Dinner Buffet"],
@@ -26,7 +26,7 @@ const menuSections = [
     eyebrow: "Our Menu",
     title: "Assorted Bento",
     minimum: "Minimum 20 pax",
-    image: "/images/nam_nams_bento.jpg",
+    image: "/images/nam_nams_bento.webp",
     description:
       "Individually packed meals designed for organised events, office meetings, training sessions, and occasions where clean presentation and reliable portions matter.",
     items: ["Bento for Breakfast", "Bento for Lunch or Teatime", "Bento for Dinner"],
@@ -40,7 +40,7 @@ const menuSections = [
     eyebrow: "Our Menu",
     title: "Assorted Kuih",
     minimum: "Standard Menu",
-    image: "/images/gallery2.png",
+    image: "/images/gallery2.webp",
     description:
       "Traditional Malaysian kuih prepared for meetings, celebrations, open houses, and dessert tables. A simple way to add heritage taste to any event.",
     items: ["Standard Kuih Selection", "Event Dessert Table", "Corporate Refreshments"],

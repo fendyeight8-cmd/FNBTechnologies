@@ -29,7 +29,7 @@ const bentoData = [
     cat: "Menu",
     desc: "Individually packed, balanced meals for organized events and meetings.",
     images: [
-      "/images/nam_nams_bento.jpg"
+      "/images/nam_nams_bento.webp"
     ],
     classes: "wide",
   },
