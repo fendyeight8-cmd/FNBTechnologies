@@ -9,6 +9,7 @@ const services = [
   { id: "bento", name: "Corporate Bento", icon: "CB", image: "/images/corporate_event.png" },
   { id: "event", name: "Event Planning", icon: "EP", image: "/images/hero2.png" },
   { id: "engagement", name: "Engagement", icon: "EN", image: "/images/engagement.png" },
+  { id: "tasting", name: "Food Tasting", icon: "FT", image: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=900&q=80" },
 ];
 
 const missing = "-";
@@ -38,6 +39,8 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
     eventSize: "",
     budget: "",
     package: "",
+    tastingMenu: "",
+    tastingPax: "",
   });
 
   if (!isOpen) return null;
@@ -82,6 +85,8 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
         extraDetails = `\nTheme: ${formData.theme || missing}\nVenue: ${formData.venue || missing}\nGuests: ${formData.guests || missing}`;
       } else if (formData.service === "Event Planning") {
         extraDetails = `\nEvent Category: ${formData.eventCategory || missing}\nEvent Size: ${formData.eventSize || missing}\nBudget: ${formData.budget || missing}\nVenue: ${formData.venue || missing}`;
+      } else if (formData.service === "Food Tasting") {
+        extraDetails = `\nTasting Menu: ${formData.tastingMenu || missing}\nPax: ${formData.tastingPax || missing}`;
       }
 
       const whatsappMsg = `Nam-Nams Catering & Events - New Booking\n\nService: ${formData.service}\nName: ${formData.name}\nPhone: ${formData.phone}\nDate: ${formData.date}${extraDetails}\n\nNotes: ${formData.notes || "None"}`;
@@ -243,6 +248,24 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
             </div>
           </>
         );
+      case "Food Tasting":
+        return (
+          <>
+            <div className="form-group">
+              <select value={formData.tastingMenu} onChange={(e) => updateForm({ tastingMenu: e.target.value })} style={selectStyle}>
+                <option value="" style={optionStyle}>Select Tasting Menu</option>
+                <option value="Wedding Signature" style={optionStyle}>Wedding Signature</option>
+                <option value="Corporate Buffet" style={optionStyle}>Corporate Buffet</option>
+                <option value="Heritage Selection" style={optionStyle}>Heritage Selection</option>
+                <option value="Custom Menu" style={optionStyle}>Custom Menu</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <input type="number" placeholder="Number of Pax (e.g. 2, 4)" min="1" max="10" value={formData.tastingPax} onChange={(e) => updateForm({ tastingPax: e.target.value })} />
+              <label>Number of Pax</label>
+            </div>
+          </>
+        );
       default:
         return null;
     }
@@ -371,6 +394,12 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
                   {formData.eventSize && <div className="confirm-row"><span className="confirm-label">Size</span><span className="confirm-value">{formData.eventSize}</span></div>}
                   {formData.budget && <div className="confirm-row"><span className="confirm-label">Budget</span><span className="confirm-value">RM {formData.budget}</span></div>}
                   {formData.venue && <div className="confirm-row"><span className="confirm-label">Venue</span><span className="confirm-value">{formData.venue}</span></div>}
+                </>
+              )}
+              {formData.service === "Food Tasting" && (
+                <>
+                  {formData.tastingMenu && <div className="confirm-row"><span className="confirm-label">Menu</span><span className="confirm-value">{formData.tastingMenu}</span></div>}
+                  {formData.tastingPax && <div className="confirm-row"><span className="confirm-label">Pax</span><span className="confirm-value">{formData.tastingPax}</span></div>}
                 </>
               )}
               {formData.notes && <div className="confirm-row"><span className="confirm-label">Notes</span><span className="confirm-value">{formData.notes}</span></div>}

@@ -15,6 +15,7 @@ import GalleryProof from "@/components/GalleryProof";
 import ClientLogos from "@/components/ClientLogos";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import HeritageTaste from "@/components/HeritageTaste";
+import FoodTasting from "@/components/FoodTasting";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -40,6 +41,7 @@ export default function Home() {
       <CorporateBento onOpenBooking={() => setIsBookingOpen(true)} />
       <GalleryProof />
       <HeritageTaste />
+      <FoodTasting onOpenBooking={() => setIsBookingOpen(true)} />
       <Testimonials />
       <ClientLogos />
       <Contact />
