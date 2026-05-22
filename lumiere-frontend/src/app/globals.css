@@ -2331,7 +2331,7 @@ body {
 
 .dalca-hero-copy {
   width: min(1180px, calc(100vw - 48px));
-  text-align: left;
+  text-align: center;
   margin: 0 auto;
 }
 
@@ -2345,6 +2345,7 @@ body {
   color: #ffffff;
   text-shadow: 0 10px 40px rgba(0, 0, 0, 0.42);
   max-width: 820px;
+  margin: 0 auto;
   font-family: var(--font-jost), Arial, sans-serif;
   font-size: clamp(3.2rem, 7vw, 6.6rem);
   line-height: 0.95;
@@ -2366,13 +2367,13 @@ body {
 .hero-subtitle {
   color: rgba(255, 255, 255, 0.9);
   text-shadow: none;
-  margin-left: 0;
+  margin: 24px auto 32px auto;
   max-width: 620px;
   letter-spacing: 0.04em;
 }
 
 .hero-cta-group {
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .dalca-hero-copy {
