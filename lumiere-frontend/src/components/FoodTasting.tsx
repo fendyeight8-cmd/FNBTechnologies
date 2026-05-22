@@ -7,6 +7,11 @@ interface FoodTastingProps {
 export default function FoodTasting({ onOpenBooking }: FoodTastingProps) {
   return (
     <section className="food-tasting-section" id="tasting" style={{ padding: "100px 24px", background: "var(--navy)", color: "var(--white)", position: "relative", overflow: "hidden" }}>
+      <style>{`
+        #tasting .section-title {
+          color: #ffffff !important;
+        }
+      `}</style>
       <div className="ft-bg" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", opacity: 0.15 }}>
         <img src="/images/food_testing.webp" alt="Chef preparing food" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
       </div>
