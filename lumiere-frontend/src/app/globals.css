@@ -3490,12 +3490,12 @@ section {
 
 /* Nam-Nams brand theme from the new logo */
 :root {
-  --brand-teal: #123f42;
-  --brand-teal-dark: #082d30;
-  --brand-teal-soft: #1f5758;
-  --brand-gold: #c8b27a;
-  --brand-gold-light: #dfcf9d;
-  --brand-ivory: #fbfaf6;
+  --brand-teal: #133534;
+  --brand-teal-dark: #0D2524;
+  --brand-teal-soft: #235A58;
+  --brand-gold: #D4AF37;
+  --brand-gold-light: #F3E5AB;
+  --brand-ivory: #FCFAF5;
   --brand-paper: #ffffff;
   --brand-ink: #071f22;
   --brand-muted: #64706c;
@@ -4413,4 +4413,99 @@ body {
   .hero-nav-btn { display: none; }
   .hero-pagination { bottom: 20px; gap: 12px; }
   .hero-dot-label { display: none; }
+}
+/* --- PREMIUM DESIGN & EFFECTS OVERHAUL --- */
+
+/* 1. Global Background Harmonization */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* 2. Premium Button Effects */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: var(--brand-gold) !important;
+  color: var(--brand-ink) !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
+  transform: translateZ(0);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+  z-index: 1;
+}
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5) !important;
+}
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+  transition: all 0.3s ease !important;
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: var(--brand-gold) !important;
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 3. Advanced Grid Card Animations (Bento & Heritage) */
+.bento-item, .heritage-card, .dalca-why-card, .dalca-client-card {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.bento-item:hover, .heritage-card:hover, .dalca-why-card:hover, .dalca-client-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2) !important;
+  border-color: rgba(212, 175, 55, 0.3) !important;
+}
+
+.bento-img, .heritage-img {
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease !important;
+}
+.bento-item:hover .bento-img, .heritage-card:hover .heritage-img {
+  transform: scale(1.08) !important;
+  filter: brightness(1.1) !important;
+}
+
+/* Elevate Text on Hover */
+.bento-content, .heritage-card-content {
+  transition: transform 0.4s ease !important;
+}
+.bento-item:hover .bento-content, .heritage-card:hover .heritage-card-content {
+  transform: translateY(-5px);
+}
+
+/* Glassmorphic content overlays */
+.bento-content {
+  background: linear-gradient(0deg, rgba(13, 37, 36, 0.95) 0%, rgba(13, 37, 36, 0.6) 60%, transparent 100%) !important;
+  backdrop-filter: blur(2px);
+}
+
+/* 4. Navbar Glassmorphism */
+.dalca-nav {
+  background: rgba(252, 250, 245, 0.85) !important;
+  backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(19, 53, 52, 0.05);
+  transition: padding 0.4s ease, background 0.4s ease !important;
+}
+.dalca-nav.scrolled {
+  background: rgba(252, 250, 245, 0.95) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
 }
