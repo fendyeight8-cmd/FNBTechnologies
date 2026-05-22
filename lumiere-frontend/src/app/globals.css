@@ -2314,8 +2314,8 @@ body {
 }
 
 .nav-admin-btn {
-  border-color: rgba(6, 17, 60, 0.18);
-  color: var(--navy);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: var(--brand-ink);
 }
 
 .dalca-hero {
@@ -3527,7 +3527,7 @@ body {
   flex-direction: row;
   align-items: center;
   gap: 12px;
-  color: var(--brand-teal);
+  color: var(--brand-gold);
   text-transform: none;
 }
 
@@ -3547,7 +3547,7 @@ body {
 
 .brand-wordmark strong,
 .footer-brand-lockup strong {
-  color: var(--brand-teal);
+  color: var(--brand-ink);
   font-family: var(--font-cormorant), serif;
   font-size: 1.58rem;
   font-weight: 600;
