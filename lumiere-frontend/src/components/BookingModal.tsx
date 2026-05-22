@@ -85,7 +85,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
       }
 
       const whatsappMsg = `Nam-Nams Catering & Events - New Booking\n\nService: ${formData.service}\nName: ${formData.name}\nPhone: ${formData.phone}\nDate: ${formData.date}${extraDetails}\n\nNotes: ${formData.notes || "None"}`;
-      window.open(`https://wa.me/60162161632?text=${encodeURIComponent(whatsappMsg)}`, "_blank");
+      window.open(`https://wa.me/601110085626?text=${encodeURIComponent(whatsappMsg)}`, "_blank");
 
       onClose();
     } catch (err) {

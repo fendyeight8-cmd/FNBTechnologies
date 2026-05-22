@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useCallback, useState, useEffect } from "react";
 import Link from "next/link";
@@ -266,7 +266,7 @@ export default function AdminPage() {
     const phone = (booking.phone || "").replace(/[^\d]/g, "");
     const target = phone.startsWith("60") ? phone : `60${phone.replace(/^0/, "")}`;
     const text = `Hi ${booking.name}, this is Nam-Nams regarding your ${booking.service} enquiry for ${booking.date}. May we confirm your event details?`;
-    return `https://wa.me/${target || "60162161632"}?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/${target || "601110085626"}?text=${encodeURIComponent(text)}`;
   };
 
   if (!isLoggedIn) {

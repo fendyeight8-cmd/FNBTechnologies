@@ -42,7 +42,7 @@ export default function Footer() {
         <div>
           <Link href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</Link>
           <Link href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</Link>
-          <Link href="https://wa.me/60162161632" target="_blank" rel="noopener noreferrer">WhatsApp</Link>
+          <Link href="https://wa.me/601110085626" target="_blank" rel="noopener noreferrer">WhatsApp</Link>
         </div>
       </div>
     </footer>
