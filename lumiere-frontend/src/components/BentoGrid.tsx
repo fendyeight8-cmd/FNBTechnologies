@@ -41,16 +41,6 @@ const bentoData = [
     images: [
       "https://images.unsplash.com/photo-1558401391-7899b4bd5bbf?w=900&q=80"
     ],
-    classes: "square",
-  },
-  {
-    id: 5,
-    title: "Corporate Live Station",
-    cat: "Menu",
-    desc: "Engaging culinary stations designed for premium corporate events.",
-    images: [
-      "https://images.unsplash.com/photo-1414235077428-33898ed1e81b?w=900&q=80"
-    ],
     classes: "wide",
   }
 ];
