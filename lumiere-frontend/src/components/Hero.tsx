@@ -6,7 +6,7 @@ import Link from "next/link";
 const slides = [
   { id: 1, src: "/images/hero1.png", label: "Buffet Catering" },
   { id: 2, src: "/images/hero2.png", label: "Corporate Functions" },
-  { id: 3, src: "/images/nam_nams_bento.jpg", label: "Nam-Nams Bento Choices" },
+  { id: 3, src: "/images/nam_nams_bento.jpg", label: "Assorted Bento" },
 ];
 
 export default function Hero({ onOpenBooking }: { onOpenBooking: () => void }) {

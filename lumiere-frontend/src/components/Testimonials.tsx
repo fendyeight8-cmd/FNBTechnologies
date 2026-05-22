@@ -8,7 +8,7 @@ const testimonials = [
     author: "Siti Rahimah — Corporate Client, Penang"
   },
   {
-    quote: "The Nam-Nams Bento Choices sets were an absolute hit during our annual meeting. Delicious Malaysian flavors, beautifully packaged, and delivered right on time.",
+    quote: "The Assorted Bento sets were an absolute hit during our annual meeting. Delicious Malaysian flavors, beautifully packaged, and delivered right on time.",
     author: "Amirah Lim — HR Manager"
   },
   {

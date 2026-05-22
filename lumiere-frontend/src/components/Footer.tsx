@@ -26,7 +26,7 @@ export default function Footer() {
       <div className="dalca-footer-col">
         <h3>Our Menus</h3>
         <Link href="/cateringmenu">Buffet Catering</Link>
-        <Link href="/cateringmenu">Nam-Nams Bento Choices</Link>
+        <Link href="/cateringmenu">Assorted Bento</Link>
         <Link href="/cateringmenu">Assorted Kuih</Link>
       </div>
 
