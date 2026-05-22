@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+
 const bentoData = [
   {
     id: 1,
@@ -21,6 +22,36 @@ const bentoData = [
       "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=900&q=80"
     ],
     classes: "tall",
+  },
+  {
+    id: 3,
+    title: "Assorted Bento",
+    cat: "Menu",
+    desc: "Individually packed, balanced meals for organized events and meetings.",
+    images: [
+      "/images/nam_nams_bento.jpg"
+    ],
+    classes: "wide",
+  },
+  {
+    id: 4,
+    title: "High Tea Setting",
+    cat: "Menu",
+    desc: "Elegant afternoon tea breaks with pastries and local savory bites.",
+    images: [
+      "https://images.unsplash.com/photo-1558401391-7899b4bd5bbf?w=900&q=80"
+    ],
+    classes: "square",
+  },
+  {
+    id: 5,
+    title: "Corporate Live Station",
+    cat: "Menu",
+    desc: "Engaging culinary stations designed for premium corporate events.",
+    images: [
+      "https://images.unsplash.com/photo-1414235077428-33898ed1e81b?w=900&q=80"
+    ],
+    classes: "wide",
   }
 ];
 
