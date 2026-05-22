@@ -49,9 +49,9 @@ db = SQLAlchemy(app)
 # ENVIRONMENT VARIABLES
 # =========================
 
-ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", uuid.uuid4().hex)
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", uuid.uuid4().hex)
-API_TOKEN = os.environ.get("API_TOKEN", uuid.uuid4().hex)
+ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "fbt2026")
+API_TOKEN = os.environ.get("API_TOKEN", "fbt_secure_token_2026")
 ALLOWED_IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 
 
