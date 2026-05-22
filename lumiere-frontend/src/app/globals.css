@@ -4318,5 +4318,30 @@ body {
 .hero-slides, .hero-slide {
   width: 100% !important;
   height: 100% !important;
-  background-position: top center !important;
+}
+
+/* Background layer that fills screen completely (blurred) */
+.hero-slide-blur {
+  position: absolute;
+  inset: -10%;
+  background-size: cover !important;
+  background-position: center !important;
+  filter: blur(25px) brightness(0.6);
+  z-index: 0;
+}
+
+/* Main layer that contains the image without cropping */
+.hero-slide-main {
+  position: absolute;
+  inset: 0;
+  background-size: contain !important;
+  background-position: right center !important;
+  background-repeat: no-repeat !important;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .hero-slide-main {
+    background-position: center !important;
+  }
 }

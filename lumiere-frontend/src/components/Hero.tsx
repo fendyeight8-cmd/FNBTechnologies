@@ -27,8 +27,16 @@ export default function Hero({ onOpenBooking }: { onOpenBooking: () => void }) {
             <div
               key={slide.id}
               className={`hero-slide ${index === currentSlide ? "active" : ""}`}
-              style={{ backgroundImage: `url(${slide.src})` }}
-            />
+            >
+              <div 
+                className="hero-slide-blur"
+                style={{ backgroundImage: `url(${slide.src})` }}
+              />
+              <div 
+                className="hero-slide-main"
+                style={{ backgroundImage: `url(${slide.src})` }}
+              />
+            </div>
           ))}
         </div>
       </div>
