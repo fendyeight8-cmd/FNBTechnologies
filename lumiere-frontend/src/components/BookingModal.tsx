@@ -9,7 +9,7 @@ const services = [
   { id: "bento", name: "Corporate Bento", icon: "CB", image: "/images/corporate_event.png" },
   { id: "event", name: "Event Planning", icon: "EP", image: "/images/hero2.png" },
   { id: "engagement", name: "Engagement", icon: "EN", image: "/images/engagement.png" },
-  { id: "tasting", name: "Food Tasting", icon: "FT", image: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=900&q=80" },
+  { id: "tasting", name: "Food Tasting", icon: "FT", image: "/images/food_testing.png" },
 ];
 
 const missing = "-";

@@ -8,7 +8,7 @@ export default function FoodTasting({ onOpenBooking }: FoodTastingProps) {
   return (
     <section className="food-tasting-section" id="tasting" style={{ padding: "100px 24px", background: "var(--navy)", color: "var(--white)", position: "relative", overflow: "hidden" }}>
       <div className="ft-bg" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", opacity: 0.15 }}>
-        <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=1600&q=80" alt="Chef preparing food" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <img src="/images/food_testing.png" alt="Chef preparing food" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
       </div>
       
       <div className="ft-content" style={{ position: "relative", zIndex: 2, maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
