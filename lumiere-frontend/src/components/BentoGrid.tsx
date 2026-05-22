@@ -2,20 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 
-const bentoData = [
-  {
-    id: 0,
-    title: "Buffet Catering",
-    cat: "Menu",
-    desc: "Feast on a lavish spread of culinary delights.",
-    images: [
-      "https://images.unsplash.com/photo-1547592180-85f173990554?w=900&q=80"
-    ],
-    classes: "tall wide",
-  },
-  {
-    id: 1,
-    title: "Premium Bento",
     cat: "Menu",
     desc: "Feast on a lavish spread of customised culinary delights.",
     images: [

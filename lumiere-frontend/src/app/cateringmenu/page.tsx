@@ -12,7 +12,7 @@ const menuSections = [
     eyebrow: "Our Menu",
     title: "Buffet Catering",
     minimum: "Minimum 30 pax",
-    image: "/images/catering.png",
+    image: "/images/buffet_catering.jpg",
     description:
       "A flexible buffet service for events, parties, family gatherings, and corporate functions. Guests can enjoy generous portions, casual movement, and a warm dining experience.",
     items: ["Breakfast Catering Buffet", "Lunch Catering Buffet", "Dinner Buffet"],
