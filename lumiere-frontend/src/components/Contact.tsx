@@ -66,18 +66,35 @@ export default function Contact() {
           <p className="section-body reveal reveal-delay-2">
             Ready to make your event extraordinary? Contact us and let&apos;s start creating something beautiful.
           </p>
-          <div style={{ marginTop: '60px' }}>
-            <div className="contact-detail reveal reveal-delay-1">
-              <div className="cd-label">Location</div>
-              <div className="cd-value">11 Jalan 1A/114, Kuchai Business Centre, 58200 Kuala Lumpur</div>
+          <div style={{ marginTop: '50px', display: 'flex', flexDirection: 'column', gap: '30px' }}>
+            <div className="contact-detail reveal reveal-delay-1" style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
+              <div style={{ color: 'var(--gold)', marginTop: '4px' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div>
+                <div className="cd-label" style={{ fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.15em', color: 'var(--gold)', marginBottom: '8px', textTransform: 'uppercase' }}>Location</div>
+                <div className="cd-value" style={{ fontSize: '1.2rem', color: 'var(--navy)', lineHeight: 1.5 }}>Kota Kinabalu Sabah.</div>
+              </div>
             </div>
-            <div className="contact-detail reveal reveal-delay-2">
-              <div className="cd-label">Email</div>
-              <div className="cd-value">masakanwarisan@vezion.com.my</div>
+            
+            <div className="contact-detail reveal reveal-delay-2" style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
+              <div style={{ color: 'var(--gold)', marginTop: '4px' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div>
+                <div className="cd-label" style={{ fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.15em', color: 'var(--gold)', marginBottom: '8px', textTransform: 'uppercase' }}>Email</div>
+                <div className="cd-value" style={{ fontSize: '1.2rem', color: 'var(--navy)' }}><a href="mailto:fendyight8@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>fendyight8@gmail.com</a></div>
+              </div>
             </div>
-            <div className="contact-detail reveal reveal-delay-3">
-              <div className="cd-label">Phone / WhatsApp</div>
-              <div className="cd-value">+60 3 6412 9763</div>
+            
+            <div className="contact-detail reveal reveal-delay-3" style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
+              <div style={{ color: 'var(--gold)', marginTop: '4px' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div>
+                <div className="cd-label" style={{ fontSize: '0.85rem', fontWeight: 700, letterSpacing: '0.15em', color: 'var(--gold)', marginBottom: '8px', textTransform: 'uppercase' }}>Phone / WhatsApp</div>
+                <div className="cd-value" style={{ fontSize: '1.2rem', color: 'var(--navy)' }}><a href="https://wa.me/601110085626" style={{ color: 'inherit', textDecoration: 'none' }}>+601110085626</a></div>
+              </div>
             </div>
           </div>
         </div>
