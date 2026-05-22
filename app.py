@@ -7,6 +7,7 @@ from datetime import datetime
 from sqlalchemy import text
 import os
 import uuid
+import hmac
 
 STATIC_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static_frontend')
 
@@ -45,9 +46,9 @@ db = SQLAlchemy(app)
 # ENVIRONMENT VARIABLES
 # =========================
 
-ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", "admin")
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "fbt2026")
-API_TOKEN = os.environ.get("API_TOKEN", "fbt_secure_token_2026")
+ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME", uuid.uuid4().hex)
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", uuid.uuid4().hex)
+API_TOKEN = os.environ.get("API_TOKEN", uuid.uuid4().hex)
 ALLOWED_IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 
 
@@ -196,7 +197,15 @@ def admin_required(f):
 
         auth = request.headers.get('Authorization')
 
-        if not auth or auth != f"Bearer {API_TOKEN}":
+        if not auth or not auth.startswith('Bearer '):
+            return jsonify({
+                'status': 'error',
+                'message': 'Unauthorized'
+            }), 401
+            
+        token = auth.split('Bearer ', 1)[1]
+
+        if not hmac.compare_digest(token, API_TOKEN):
             return jsonify({
                 'status': 'error',
                 'message': 'Unauthorized'
@@ -406,7 +415,7 @@ def handle_marketing():
 
     materials = MarketingMaterial.query.order_by(
         MarketingMaterial.created_at.desc()
-    ).all()
+    ).limit(200).all()
 
     return jsonify([m.to_dict() for m in materials])
 
@@ -443,7 +452,7 @@ def get_gallery():
 
     items = GalleryItem.query.order_by(
         GalleryItem.created_at.desc()
-    ).all()
+    ).limit(200).all()
 
     return jsonify([i.to_dict() for i in items])
 

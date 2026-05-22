@@ -9,6 +9,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     event: "",
     date: "",
     msg: ""
@@ -40,7 +41,7 @@ export default function Contact() {
       service: formData.event || "Enquiry",
       date: formData.date || "Not specified",
       notes: formData.msg || "No message",
-      phone: "Not provided"
+      phone: formData.phone || "Not provided"
     };
 
     try {
@@ -51,7 +52,7 @@ export default function Contact() {
       });
       if (!res.ok) throw new Error("Submission failed");
       alert("Enquiry sent successfully!");
-      setFormData({ name: "", email: "", event: "", date: "", msg: "" });
+      setFormData({ name: "", email: "", phone: "", event: "", date: "", msg: "" });
     } catch (err) {
       console.error("Submission failed:", err);
     }
@@ -119,6 +120,16 @@ export default function Contact() {
               required
             />
             <label>Email Address</label>
+          </div>
+          <div className="form-group">
+            <input 
+              type="tel" 
+              placeholder="Phone Number" 
+              value={formData.phone}
+              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+              required
+            />
+            <label>Phone Number</label>
           </div>
           <div className="form-group">
             <input 
