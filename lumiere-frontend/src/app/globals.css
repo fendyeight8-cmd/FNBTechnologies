@@ -4320,3 +4320,97 @@ body {
   width: 100% !important;
   height: 100% !important;
 }
+/* Hero Carousel Controls */
+.hero-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+.hero-nav-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-50%) scale(1.05);
+}
+.hero-nav-btn.prev {
+  left: 32px;
+}
+.hero-nav-btn.next {
+  right: 32px;
+}
+.hero-pagination {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 24px;
+  z-index: 10;
+}
+.hero-dot {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+.hero-dot.active, .hero-dot:hover {
+  opacity: 1;
+}
+.hero-dot-label {
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+.hero-dot.active .hero-dot-label, .hero-dot:hover .hero-dot-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-dot-line {
+  width: 40px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-dot.active .hero-dot-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--gold);
+  animation: loadProgress 6s linear forwards;
+}
+@keyframes loadProgress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@media (max-width: 768px) {
+  .hero-nav-btn { display: none; }
+  .hero-pagination { bottom: 20px; gap: 12px; }
+  .hero-dot-label { display: none; }
+}
