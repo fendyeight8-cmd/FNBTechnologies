@@ -571,6 +571,14 @@ def delete_gallery_image(item_id):
 # START APP
 # =========================
 
+@app.after_request
+def add_header(response):
+    if response.mimetype == 'text/html':
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '-1'
+    return response
+
 if __name__ == '__main__':
 
     port = int(os.environ.get("PORT", 9000))
