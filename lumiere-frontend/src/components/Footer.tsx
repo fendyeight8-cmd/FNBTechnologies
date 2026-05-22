@@ -32,9 +32,9 @@ export default function Footer() {
 
       <div className="dalca-footer-col">
         <h3>Contact Information</h3>
-        <p>11 Jalan 1A/114,<br />Kuchai Business Centre,<br />58200 Kuala Lumpur</p>
-        <Link href="mailto:masakanwarisan@vezion.com.my">masakanwarisan@vezion.com.my</Link>
-        <Link href="tel:+60364129763">+603-64129763</Link>
+        <p>Kota Kinabalu Sabah.</p>
+        <Link href="mailto:fendyight8@gmail.com">fendyight8@gmail.com</Link>
+        <Link href="tel:+601110085626">+601110085626</Link>
       </div>
 
       <div className="dalca-footer-bottom">
