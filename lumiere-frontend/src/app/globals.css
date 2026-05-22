@@ -2325,7 +2325,7 @@ body {
 
 .hero-slide::after {
   background:
-    linear-gradient(90deg, rgba(6, 17, 60, 0.82) 0%, rgba(6, 17, 60, 0.42) 45%, rgba(6, 17, 60, 0.12) 100%) !important;
+    linear-gradient(90deg, rgba(6, 17, 60, 0.5) 0%, rgba(6, 17, 60, 0.2) 100%) !important;
   backdrop-filter: none !important;
 }
 
@@ -3627,7 +3627,7 @@ body {
 
 .hero-slide::after {
   background:
-    linear-gradient(90deg, rgba(8, 45, 48, 0.84) 0%, rgba(8, 45, 48, 0.48) 48%, rgba(8, 45, 48, 0.16) 100%) !important;
+    linear-gradient(90deg, rgba(8, 45, 48, 0.5) 0%, rgba(8, 45, 48, 0.2) 100%) !important;
 }
 
 .hero-title em {
@@ -4318,30 +4318,4 @@ body {
 .hero-slides, .hero-slide {
   width: 100% !important;
   height: 100% !important;
-}
-
-/* Background layer that fills screen completely (blurred) */
-.hero-slide-blur {
-  position: absolute;
-  inset: -10%;
-  background-size: cover !important;
-  background-position: center !important;
-  filter: blur(25px) brightness(0.6);
-  z-index: 0;
-}
-
-/* Main layer that contains the image without cropping */
-.hero-slide-main {
-  position: absolute;
-  inset: 0;
-  background-size: contain !important;
-  background-position: right center !important;
-  background-repeat: no-repeat !important;
-  z-index: 1;
-}
-
-@media (max-width: 1024px) {
-  .hero-slide-main {
-    background-position: center !important;
-  }
 }
