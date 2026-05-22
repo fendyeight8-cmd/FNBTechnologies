@@ -4318,4 +4318,5 @@ body {
 .hero-slides, .hero-slide {
   width: 100% !important;
   height: 100% !important;
+  background-position: top center !important;
 }
