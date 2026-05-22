@@ -3490,23 +3490,23 @@ section {
 
 /* Nam-Nams brand theme from the new logo */
 :root {
-  --brand-teal: #133534;
-  --brand-teal-dark: #0D2524;
-  --brand-teal-soft: #235A58;
-  --brand-gold: #D4AF37;
-  --brand-gold-light: #F3E5AB;
-  --brand-ivory: #FCFAF5;
-  --brand-paper: #ffffff;
-  --brand-ink: #071f22;
-  --brand-muted: #64706c;
+  --brand-teal: #1a3834;
+  --brand-teal-dark: #0d1e1c;
+  --brand-teal-soft: #244b46;
+  --brand-gold: #cba53b;
+  --brand-gold-light: #e6c55c;
+  --brand-ivory: #132a27;
+  --brand-paper: #1b3a36;
+  --brand-ink: #ffffff;
+  --brand-muted: #a4b3b0;
   --gold: var(--brand-gold);
   --gold-light: var(--brand-gold-light);
-  --gold-dark: #9f8952;
+  --gold-dark: #a88629;
   --navy: var(--brand-teal);
   --ink: var(--brand-ink);
   --paper: var(--brand-ivory);
-  --soft: #f4f1e8;
-  --line: #ddd4bd;
+  --soft: var(--brand-teal-dark);
+  --line: #2d524d;
   --text-light: var(--brand-ink);
   --text-muted: var(--brand-muted);
   --royal-green: var(--brand-teal);
@@ -3519,8 +3519,8 @@ body {
 
 .dalca-nav,
 .dalca-nav.scrolled {
-  background: rgba(251, 250, 246, 0.96);
-  border-bottom-color: rgba(18, 63, 66, 0.12);
+  background: rgba(19, 42, 39, 0.96);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 
 .dalca-logo {
@@ -3582,18 +3582,18 @@ body {
 .form-submit,
 .book-btn-next,
 .book-btn-whatsapp {
-  background: var(--brand-teal) !important;
-  border-color: var(--brand-teal) !important;
-  color: #ffffff !important;
+  background: var(--brand-gold) !important;
+  border-color: var(--brand-gold) !important;
+  color: #132a27 !important;
 }
 
 .btn-primary:hover,
 .form-submit:hover,
 .book-btn-next:hover,
 .book-btn-whatsapp:hover {
-  background: var(--brand-gold) !important;
-  border-color: var(--brand-gold) !important;
-  color: var(--brand-ink) !important;
+  background: var(--brand-gold-light) !important;
+  border-color: var(--brand-gold-light) !important;
+  color: #132a27 !important;
 }
 
 .btn-ghost:hover,
@@ -4413,99 +4413,4 @@ body {
   .hero-nav-btn { display: none; }
   .hero-pagination { bottom: 20px; gap: 12px; }
   .hero-dot-label { display: none; }
-}
-/* --- PREMIUM DESIGN & EFFECTS OVERHAUL --- */
-
-/* 1. Global Background Harmonization */
-section {
-  position: relative;
-  z-index: 1;
-}
-
-/* 2. Premium Button Effects */
-.btn-primary {
-  position: relative;
-  overflow: hidden;
-  background: var(--brand-gold) !important;
-  color: var(--brand-ink) !important;
-  font-weight: 600 !important;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
-  transform: translateZ(0);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
-}
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transition: left 0.6s ease;
-  z-index: 1;
-}
-.btn-primary:hover {
-  transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5) !important;
-}
-.btn-primary:hover::before {
-  left: 100%;
-}
-
-.btn-ghost {
-  background: rgba(255, 255, 255, 0.05) !important;
-  backdrop-filter: blur(10px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  color: #fff !important;
-  transition: all 0.3s ease !important;
-}
-.btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.15) !important;
-  border-color: var(--brand-gold) !important;
-  transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* 3. Advanced Grid Card Animations (Bento & Heritage) */
-.bento-item, .heritage-card, .dalca-why-card, .dalca-client-card {
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  overflow: hidden;
-}
-.bento-item:hover, .heritage-card:hover, .dalca-why-card:hover, .dalca-client-card:hover {
-  transform: translateY(-8px) !important;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2) !important;
-  border-color: rgba(212, 175, 55, 0.3) !important;
-}
-
-.bento-img, .heritage-img {
-  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease !important;
-}
-.bento-item:hover .bento-img, .heritage-card:hover .heritage-img {
-  transform: scale(1.08) !important;
-  filter: brightness(1.1) !important;
-}
-
-/* Elevate Text on Hover */
-.bento-content, .heritage-card-content {
-  transition: transform 0.4s ease !important;
-}
-.bento-item:hover .bento-content, .heritage-card:hover .heritage-card-content {
-  transform: translateY(-5px);
-}
-
-/* Glassmorphic content overlays */
-.bento-content {
-  background: linear-gradient(0deg, rgba(13, 37, 36, 0.95) 0%, rgba(13, 37, 36, 0.6) 60%, transparent 100%) !important;
-  backdrop-filter: blur(2px);
-}
-
-/* 4. Navbar Glassmorphism */
-.dalca-nav {
-  background: rgba(252, 250, 245, 0.85) !important;
-  backdrop-filter: blur(16px) !important;
-  border-bottom: 1px solid rgba(19, 53, 52, 0.05);
-  transition: padding 0.4s ease, background 0.4s ease !important;
-}
-.dalca-nav.scrolled {
-  background: rgba(252, 250, 245, 0.95) !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
 }
