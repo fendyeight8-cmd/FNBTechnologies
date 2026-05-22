@@ -4306,3 +4306,16 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Force hero slides to cover full viewport width to prevent gaps */
+.hero-bg {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%) !important;
+}
+.hero-slides, .hero-slide {
+  width: 100% !important;
+  height: 100% !important;
+}
