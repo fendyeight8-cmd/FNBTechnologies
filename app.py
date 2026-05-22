@@ -8,6 +8,9 @@ from sqlalchemy import text
 import os
 import uuid
 import hmac
+from dotenv import load_dotenv
+
+load_dotenv()
 
 STATIC_FOLDER = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'static_frontend')
 
