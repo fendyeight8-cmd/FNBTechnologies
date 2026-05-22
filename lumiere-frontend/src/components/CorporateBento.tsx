@@ -17,7 +17,7 @@ const specializations = [
   },
   {
     name: "Schools & Canteens",
-    img: "/images/bento_corporate.png",
+    img: "/images/nam_nams_bento.jpg",
     desc: "Daily customised meals for schools, offices, and factories, cooked fresh for small or large groups.",
     bullets: ["Kindergartens and schools", "Universities", "Office cafeteria", "Factory canteens"],
   },

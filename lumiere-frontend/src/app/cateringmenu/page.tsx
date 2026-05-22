@@ -24,15 +24,15 @@ const menuSections = [
   },
   {
     eyebrow: "Our Menu",
-    title: "Premium Bento",
+    title: "Nam-Nams Bento Choices",
     minimum: "Minimum 20 pax",
-    image: "/images/bento_corporate.png",
+    image: "/images/nam_nams_bento.jpg",
     description:
       "Individually packed meals designed for organised events, office meetings, training sessions, and occasions where clean presentation and reliable portions matter.",
     items: ["Bento for Breakfast", "Bento for Lunch or Teatime", "Bento for Dinner"],
     packages: [
       { name: "Essential Bento", price: "From RM12/pax", pax: "20 pax minimum", includes: "Single protein, rice/noodles, vegetable, packed cutlery" },
-      { name: "Premium Bento", price: "From RM18/pax", pax: "30 pax minimum", includes: "Balanced set, dessert or kuih, drink option" },
+      { name: "Nam-Nams Bento Choices", price: "From RM18/pax", pax: "30 pax minimum", includes: "Balanced set, dessert or kuih, drink option" },
       { name: "Executive Bento", price: "From RM25/pax", pax: "50 pax minimum", includes: "Premium menu, branded label option, delivery planning" },
     ],
   },
@@ -67,7 +67,7 @@ export default function CateringMenuPage() {
         <div className="section-eyebrow">Our Menu</div>
         <h1>Discover Our<br /><em>Delectable Menu</em></h1>
         <p>
-          Choose from buffet catering, premium bento sets, and Malaysian kuih selections for corporate events, schools, offices, factories, and family gatherings.
+          Choose from buffet catering, Nam-Nams Bento Choices sets, and Malaysian kuih selections for corporate events, schools, offices, factories, and family gatherings.
         </p>
       </section>
 

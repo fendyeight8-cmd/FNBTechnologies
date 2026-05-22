@@ -64,7 +64,7 @@ export default function AboutPage() {
         </div>
         <div className="about-image-wrapper reveal reveal-delay-1">
           <div className="about-image-inner">
-            <img src="/images/hero3.png" alt="Nam-Nams Culinary Artistry" loading="lazy" />
+            <img src="/images/nam_nams_bento.jpg" alt="Nam-Nams Culinary Artistry" loading="lazy" />
           </div>
         </div>
       </div>

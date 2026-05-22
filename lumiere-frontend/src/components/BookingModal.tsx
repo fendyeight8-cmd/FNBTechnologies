@@ -126,7 +126,7 @@ export default function BookingModal({ isOpen, onClose }: { isOpen: boolean; onC
               <select value={formData.package} onChange={(e) => updateForm({ package: e.target.value })} style={selectStyle}>
                 <option value="" style={optionStyle}>Select Package Range</option>
                 <option value="Essential Bento - from RM12/pax" style={optionStyle}>Essential Bento - from RM12/pax</option>
-                <option value="Premium Bento - from RM18/pax" style={optionStyle}>Premium Bento - from RM18/pax</option>
+                <option value="Nam-Nams Bento Choices - from RM18/pax" style={optionStyle}>Nam-Nams Bento Choices - from RM18/pax</option>
                 <option value="Executive Bento - from RM25/pax" style={optionStyle}>Executive Bento - from RM25/pax</option>
               </select>
             </div>

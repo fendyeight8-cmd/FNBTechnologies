@@ -1,7 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-
+const bentoData = [
+  {
+    id: 1,
+    title: "Signature Buffet",
     cat: "Menu",
     desc: "Feast on a lavish spread of customised culinary delights.",
     images: [
