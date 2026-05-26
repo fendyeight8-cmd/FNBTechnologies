@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BookingModal from "@/components/BookingModal";
+import FeaturedVideo from "@/components/FeaturedVideo";
 
 export default function AboutPage() {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -69,6 +70,20 @@ export default function AboutPage() {
         </div>
       </div>
 
+      <FeaturedVideo 
+        videoId="xPPLbEFbCAo"
+        eyebrow="Behind The Scenes"
+        heading="Our Culinary Craftsmanship"
+        subtitle="Watch how our culinary experts bring taste and artistry to life"
+        coverImage="/images/kitchen_thumbnail.png"
+        ctaText="BOOK WITH US"
+        testimonials={[
+          { quote: "Authentic tastes prepared in a highly clean and state-of-the-art facility.", author: "Health & Quality Officer" },
+          { quote: "Every dish is assembled by passionate chefs who respect the craft.", author: "Executive Chef" }
+        ]}
+        onOpenBooking={() => setIsBookingOpen(true)}
+      />
+
       <div className="facts-section">
         <div className="facts-grid">
           <div className="fact-item reveal">
@@ -101,3 +116,4 @@ export default function AboutPage() {
     </main>
   );
 }
+

@@ -16,6 +16,7 @@ import ClientLogos from "@/components/ClientLogos";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import HeritageTaste from "@/components/HeritageTaste";
 import FoodTasting from "@/components/FoodTasting";
+import FeaturedVideo from "@/components/FeaturedVideo";
 import { useRouter } from "next/navigation";
 
 const BookingModal = dynamic(() => import("@/components/BookingModal"), { ssr: false });
@@ -44,6 +45,9 @@ export default function Home() {
       <GalleryProof />
       <HeritageTaste />
       <FoodTasting onOpenBooking={() => setIsBookingOpen(true)} />
+      
+      <FeaturedVideo onOpenBooking={() => setIsBookingOpen(true)} />
+      
       <Testimonials />
       <ClientLogos />
       <Contact />
